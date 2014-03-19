@@ -1,0 +1,207 @@
+
+LEDTest.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000004  00800100  000000b8  0000014c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000000b8  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800104  00800104  00000150  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000150  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  0000081c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  000008a8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000003f1  00000000  00000000  00000928  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000111  00000000  00000000  00000d19  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000029e  00000000  00000000  00000e2a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000074  00000000  00000000  000010c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000013a  00000000  00000000  0000113c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000018  00000000  00000000  00001276  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	13 c0       	rjmp	.+38     	; 0x28 <__ctors_end>
+   2:	2d c0       	rjmp	.+90     	; 0x5e <__bad_interrupt>
+   4:	2c c0       	rjmp	.+88     	; 0x5e <__bad_interrupt>
+   6:	2b c0       	rjmp	.+86     	; 0x5e <__bad_interrupt>
+   8:	2a c0       	rjmp	.+84     	; 0x5e <__bad_interrupt>
+   a:	29 c0       	rjmp	.+82     	; 0x5e <__bad_interrupt>
+   c:	28 c0       	rjmp	.+80     	; 0x5e <__bad_interrupt>
+   e:	27 c0       	rjmp	.+78     	; 0x5e <__bad_interrupt>
+  10:	26 c0       	rjmp	.+76     	; 0x5e <__bad_interrupt>
+  12:	25 c0       	rjmp	.+74     	; 0x5e <__bad_interrupt>
+  14:	24 c0       	rjmp	.+72     	; 0x5e <__bad_interrupt>
+  16:	23 c0       	rjmp	.+70     	; 0x5e <__bad_interrupt>
+  18:	22 c0       	rjmp	.+68     	; 0x5e <__bad_interrupt>
+  1a:	21 c0       	rjmp	.+66     	; 0x5e <__bad_interrupt>
+  1c:	20 c0       	rjmp	.+64     	; 0x5e <__bad_interrupt>
+  1e:	1f c0       	rjmp	.+62     	; 0x5e <__bad_interrupt>
+  20:	1e c0       	rjmp	.+60     	; 0x5e <__bad_interrupt>
+  22:	1d c0       	rjmp	.+58     	; 0x5e <__bad_interrupt>
+  24:	1c c0       	rjmp	.+56     	; 0x5e <__bad_interrupt>
+  26:	1b c0       	rjmp	.+54     	; 0x5e <__bad_interrupt>
+
+00000028 <__ctors_end>:
+  28:	11 24       	eor	r1, r1
+  2a:	1f be       	out	0x3f, r1	; 63
+  2c:	cf ef       	ldi	r28, 0xFF	; 255
+  2e:	d1 e0       	ldi	r29, 0x01	; 1
+  30:	de bf       	out	0x3e, r29	; 62
+  32:	cd bf       	out	0x3d, r28	; 61
+
+00000034 <__do_copy_data>:
+  34:	11 e0       	ldi	r17, 0x01	; 1
+  36:	a0 e0       	ldi	r26, 0x00	; 0
+  38:	b1 e0       	ldi	r27, 0x01	; 1
+  3a:	e8 eb       	ldi	r30, 0xB8	; 184
+  3c:	f0 e0       	ldi	r31, 0x00	; 0
+  3e:	02 c0       	rjmp	.+4      	; 0x44 <__SREG__+0x5>
+  40:	05 90       	lpm	r0, Z+
+  42:	0d 92       	st	X+, r0
+  44:	a4 30       	cpi	r26, 0x04	; 4
+  46:	b1 07       	cpc	r27, r17
+  48:	d9 f7       	brne	.-10     	; 0x40 <__SREG__+0x1>
+
+0000004a <__do_clear_bss>:
+  4a:	11 e0       	ldi	r17, 0x01	; 1
+  4c:	a4 e0       	ldi	r26, 0x04	; 4
+  4e:	b1 e0       	ldi	r27, 0x01	; 1
+  50:	01 c0       	rjmp	.+2      	; 0x54 <.do_clear_bss_start>
+
+00000052 <.do_clear_bss_loop>:
+  52:	1d 92       	st	X+, r1
+
+00000054 <.do_clear_bss_start>:
+  54:	a5 30       	cpi	r26, 0x05	; 5
+  56:	b1 07       	cpc	r27, r17
+  58:	e1 f7       	brne	.-8      	; 0x52 <.do_clear_bss_loop>
+  5a:	1f d0       	rcall	.+62     	; 0x9a <main>
+  5c:	2b c0       	rjmp	.+86     	; 0xb4 <_exit>
+
+0000005e <__bad_interrupt>:
+  5e:	d0 cf       	rjmp	.-96     	; 0x0 <__vectors>
+
+00000060 <_Z15SPI_master_initv>:
+#define MISO PORTB4
+#define SCK PORTB5
+
+
+void SPI_master_init(void) {
+	DDRC |= (1 << MOSI) | (1 << SCK); // MOSI and SCK to output
+  60:	87 b1       	in	r24, 0x07	; 7
+  62:	88 62       	ori	r24, 0x28	; 40
+  64:	87 b9       	out	0x07, r24	; 7
+	SPCR = (1 << SPE) | (1 << MSTR) | (1 << SPR0); // Enable SPI as master, set clock to fck/16
+  66:	81 e5       	ldi	r24, 0x51	; 81
+  68:	8c bd       	out	0x2c, r24	; 44
+}
+  6a:	08 95       	ret
+
+0000006c <_Z19SPI_master_transmith>:
+
+void SPI_master_transmit(uint8_t data) {
+	SPDR = data; //
+  6c:	8e bd       	out	0x2e, r24	; 46
+	while(!(SPSR & (1 << SPIF))); // Wait until data is transmitted
+  6e:	0d b4       	in	r0, 0x2d	; 45
+  70:	07 fe       	sbrs	r0, 7
+  72:	fd cf       	rjmp	.-6      	; 0x6e <_Z19SPI_master_transmith+0x2>
+}
+  74:	08 95       	ret
+
+00000076 <_Z10LED_enablev>:
+
+void LED_enable(void) {
+	PORTD |= (1 << LED_EN);
+  76:	5e 9a       	sbi	0x0b, 6	; 11
+}
+  78:	08 95       	ret
+
+0000007a <_Z16LED_write_bufferPh>:
+
+void LED_write_buffer(uint8_t* buffer) {
+	SPI_master_init();
+  7a:	f2 df       	rcall	.-28     	; 0x60 <_Z15SPI_master_initv>
+	for (uint8_t i = 0; i>=4; i++) {
+		SPI_master_transmit((buffer[i]));
+	}
+	PORTD |= (1 << LATCH); // Latch LED driver data
+  7c:	5f 9a       	sbi	0x0b, 7	; 11
+}
+  7e:	08 95       	ret
+
+00000080 <_Z5setupv>:
+
+
+
+void setup(void)
+{
+		PORTA = 0x0F;
+  80:	8f e0       	ldi	r24, 0x0F	; 15
+  82:	8e b9       	out	0x0e, r24	; 14
+		PORTB = 0xFF;
+  84:	8f ef       	ldi	r24, 0xFF	; 255
+  86:	85 b9       	out	0x05, r24	; 5
+		PORTC = 0xFF;
+  88:	88 b9       	out	0x08, r24	; 8
+		DDRC |= (1 << DDC0) | (1 << DDC1) | (1 << DDC2); // set pins we care about to outputs
+  8a:	87 b1       	in	r24, 0x07	; 7
+  8c:	87 60       	ori	r24, 0x07	; 7
+  8e:	87 b9       	out	0x07, r24	; 7
+		DDRD |= (1 << DDD1) | (1 << DDD6) | (1 << DDD7);
+  90:	8a b1       	in	r24, 0x0a	; 10
+  92:	82 6c       	ori	r24, 0xC2	; 194
+  94:	8a b9       	out	0x0a, r24	; 10
+		LED_enable();
+  96:	ef df       	rcall	.-34     	; 0x76 <_Z10LED_enablev>
+}
+  98:	08 95       	ret
+
+0000009a <main>:
+int main(void)
+{
+    while(1)
+    {
+		if (x == 255) {
+			LED_write_buffer(buffer);
+  9a:	c0 e0       	ldi	r28, 0x00	; 0
+  9c:	d1 e0       	ldi	r29, 0x01	; 1
+
+int main(void)
+{
+    while(1)
+    {
+		if (x == 255) {
+  9e:	80 91 04 01 	lds	r24, 0x0104
+  a2:	8f 3f       	cpi	r24, 0xFF	; 255
+  a4:	19 f4       	brne	.+6      	; 0xac <main+0x12>
+			LED_write_buffer(buffer);
+  a6:	ce 01       	movw	r24, r28
+  a8:	e8 df       	rcall	.-48     	; 0x7a <_Z16LED_write_bufferPh>
+  aa:	f9 cf       	rjmp	.-14     	; 0x9e <main+0x4>
+						}
+					j++;
+				}						
+			}
+		}
+		else {x ++;}											
+  ac:	8f 5f       	subi	r24, 0xFF	; 255
+  ae:	80 93 04 01 	sts	0x0104, r24
+  b2:	f5 cf       	rjmp	.-22     	; 0x9e <main+0x4>
+
+000000b4 <_exit>:
+  b4:	f8 94       	cli
+
+000000b6 <__stop_program>:
+  b6:	ff cf       	rjmp	.-2      	; 0xb6 <__stop_program>
