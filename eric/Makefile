@@ -1,5 +1,5 @@
 PRG            = yoyo
-OBJ            = hal.o main.o
+OBJ            = accel.o hal.o main.o
 PROGRAMMER     = avrispmkII
 PORT           = usb
 MCU_TARGET     = attiny48
