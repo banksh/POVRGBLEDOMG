@@ -2,7 +2,7 @@ import pygame, sys
 from pygame.locals import *
 
 resolution = (640,480)
-blocksize = 7
+blocksize = 8
 pixelsize = 50
 
 pygame.init()
@@ -38,7 +38,7 @@ def render(char):
 
 def draw_bit(char, pos, draw=1):
 	bitpos = (pos[0] / pixelsize, pos[1] / pixelsize)
-	if (bitpos[0] > xbits) or (bitpos[1] > ybits):
+	if (bitpos[0] >= xbits) or (bitpos[1] > ybits):
 		return
 	listBuffer = list(fontTranspose[char][bitpos[0]])
 	listBuffer[bitpos[1]] = str(draw)
@@ -63,13 +63,13 @@ class Button:
 
 def draw_grid():
 	x1 = y1 = y2 = 0
-	x2 = pixelsize * (len(fontTranspose['A'][0])-1)
-	for i in range(len(fontTranspose['A'])+2):
+	x2 = pixelsize * (xbits)
+	for i in range(xbits+2):
 		pygame.draw.line(surface, red, (x1, y2), (x2, y2), 1)
 		y2 += pixelsize
 	x2 = 0
 	y2 -= pixelsize
-	for j in range(len(fontTranspose['A'][0])):
+	for j in range(ybits+1):
 		pygame.draw.line(surface, red, (x2, y1), (x2, y2), 1)
 		x2 += pixelsize
 
@@ -116,8 +116,7 @@ except:
 	fontTranspose = load_old()
 	print "Loaded original font file"
 
-xbits = len(fontTranspose['A'])-1
-ybits = len(fontTranspose['A'][0])-1
+xbits = ybits = blocksize-1
 
 surface.fill(black)
 render('A')
