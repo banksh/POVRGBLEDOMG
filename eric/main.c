@@ -1,29 +1,43 @@
 #include "hal.h"
+#include "accel.h"
+
+void sleep();
 
 int main()
 {
 	int16_t result;
 	uint8_t display;
 
+	//uint8_t pattern[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x40,0x20,0x10,0x08,0x04,0x02};
+	uint8_t pattern[] = {0x42,0x86,0x8a,0x92,0x62,0x00,0x02,0x00,0x7c,0x82,0x82,0x82,0x7c,0x00,0x7c,0x82,0x82,0x82,0x7c,0x00,0x6c,0x92,0x92,0x92,0x6c,0x00,0x00,0x00,0x00};
+	//uint8_t pat_len = 14;
+	uint8_t pat_len = 30;
+	uint8_t i=pat_len;
+	uint8_t frame[4];
+
 	init();
-	start_sampling();
 
 	for(;;)
 	{
-		result=get_centrifugal_acceleration();
-		/*
-		if(result<0)
+		//sleep();
+		frame[0]=pattern[i];
+		frame[1]=pattern[i];
+		frame[2]=pattern[i];
+		frame[3]=pattern[i];
+		write_leds(frame);
+		if(i==0)
 		{
-			result=-result;
+			i=pat_len;
 		}
-		*/
-		display = result >> 7; // heavily divide result
-		if(display>7)
-		{
-			display=7;
-		}
-		display = 1 << display;
-		print((uint8_t)display);
+		i--;
 	}
 	return 0;
+}
+
+void sleep()
+{
+	uint16_t i;
+	for(i=0;i<10;i++)
+	{
+	}
 }

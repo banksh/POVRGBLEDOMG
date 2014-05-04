@@ -5,18 +5,21 @@ void error(uint8_t code);
 
 uint8_t black[4]={0,0,0,0};
 
+// Configure chip
 void init()
 {
 	DDRB |= (1<<DDB3) | (1<<DDB5) | (1<<DDB2); // MOSI, SCK, and SS
 	DDRD |= (1<<DDD6) | (1<<DDD7); // LED Enable and Latch
 
 	SPCR |= (1<<SPE) | (1<<MSTR); // SPI Configuration
+	SPSR |= (1<<SPI2X);
 
 	PORTD |= (1<<PORTD7); // Latch
 
 	write_leds(black);
 }
 
+// Turn on the LEDs according to a 4-byte frame
 void write_leds(uint8_t* data)
 {
 	SPDR = data[0];
@@ -30,24 +33,6 @@ void write_leds(uint8_t* data)
 
 	PORTD |= (1<<PORTD7);
 	PORTD &= ~(1<<PORTD7);
-}
-
-void test()
-{
-	int16_t pause;
-	uint8_t frame[4];
-	int8_t i;
-
-	for(;;)
-	for(i=0;i<8;i++)
-	{
-		frame[0]=1<<i;
-		frame[1]=1<<(7-i);
-		frame[2]=frame[0];
-		frame[3]=frame[1];
-		write_leds(frame);
-		for(pause=0;pause<10000;pause++);
-	}
 }
 
 void i2c_start()
@@ -123,6 +108,7 @@ void i2c_stop()
 	TWCR = (1 << TWINT) | (1 << TWSTO) | (1 << TWEN); // send I2C stop condition
 }
 
+// Read a single byte from a register in the accelerometer
 void accel_read_single(uint8_t addr,uint8_t reg,uint8_t* datum)
 {
 	i2c_start();
@@ -134,6 +120,7 @@ void accel_read_single(uint8_t addr,uint8_t reg,uint8_t* datum)
 	i2c_stop();
 }
 
+// Read two bytes from a register pair in the accelerometer
 void accel_read_double(uint8_t addr,uint8_t reg,uint8_t* datum)
 {
 	i2c_start();
@@ -146,6 +133,7 @@ void accel_read_double(uint8_t addr,uint8_t reg,uint8_t* datum)
 	i2c_stop();
 }
 
+// Write a single byte to a register in the accelerometer
 void accel_write_single(uint8_t addr,uint8_t reg,uint8_t datum)
 {
 	i2c_start();
@@ -155,7 +143,7 @@ void accel_write_single(uint8_t addr,uint8_t reg,uint8_t datum)
 	i2c_stop();
 }
 
-
+// Turn on red LEDs and wait forever
 void error(uint8_t code)
 {
 	uint8_t frame[4];
@@ -167,6 +155,7 @@ void error(uint8_t code)
 	for(;;);
 }
 
+// Turn on green LEDs
 void print(uint8_t code)
 {
 	uint8_t frame[4];

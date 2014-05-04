@@ -1,6 +1,6 @@
 PRG            = yoyo
 OBJ            = accel.o hal.o main.o
-PROGRAMMER     = avrispmkII
+PROGRAMMER     = usbtiny
 PORT           = usb
 MCU_TARGET     = attiny48
 AVRDUDE_TARGET = attiny48
