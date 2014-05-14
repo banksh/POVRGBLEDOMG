@@ -3,6 +3,7 @@
 #include "power.h"
 
 void pause();
+void text_display();
 
 int main()
 {
@@ -18,6 +19,11 @@ int main()
 
 	uint16_t j;
 	int16_t ca;
+	
+	int16_t x1;
+	int16_t x2;
+	int16_t y1;
+	int16_t y2;
 
 	init();
 	accel_init();
@@ -34,7 +40,16 @@ int main()
 
 			if(i==0)
 			{
-				ca=get_centrifugal_acceleration();
+				x1 = get_accel_1_x();
+				x2 = get_accel_2_x();
+				y1 = get_accel_1_y();
+				y2 = get_accel_2_y();
+				ca = (x1>>5)+(x2>>5);
+				//ca=get_centrifugal_acceleration();
+				if ((x1>>5)>25 || (y1>>5)>25)
+				{
+				text_display();
+				}
 				if(ca<50)
 				{
 					break;
@@ -57,3 +72,11 @@ void pause()
 	}
 }
 
+void text_display()
+{
+	frame[0]=0xFF;
+	frame[1]=0xFF;
+	frame[2]=0xFF;
+	frame[3]=0xFF;
+	write_leds(frame);
+}
