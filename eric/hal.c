@@ -190,4 +190,5 @@ void uc_sleep()
 	sei(); // global interrupt enable
 	sleep(); 
 	cli(); // global interrupt disable
+	SMCR &= ~(1<<SE);
 }
