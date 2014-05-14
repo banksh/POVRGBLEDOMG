@@ -1,5 +1,7 @@
 #include "hal.h"
 #include <avr/io.h>
+#include <avr/sleep.h>
+#include <avr/interrupt.h>
 
 void error(uint8_t code);
 
@@ -183,12 +185,16 @@ void power_off_periph()
 
 void uc_sleep()
 {
-//	while(PIND & (1<<PIND2)); // TODO: replace busy-wait with interrupt enable + WFI sleep
+	SMCR |= (1<<SM1) | (1<<SE); // Sleep mode is power-down, sleep enable
+	sleep_cpu();
+	while(PIND & (1<<PIND2)); // TODO: replace busy-wait with interrupt enable + WFI sleep
 
+	/*
 	EIMSK |= (1<<INT0); // Set INT0 external interrupt enable
 	SMCR &= (1<<SM1) | (1<<SE); // Sleep mode is power-down, sleep enable
-	sei(); // global interrupt enable
-	sleep(); 
-	cli(); // global interrupt disable
+	sei();
+	sleep_cpu();
+	cli();
 	SMCR &= ~(1<<SE);
+	*/
 }

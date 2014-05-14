@@ -66,6 +66,7 @@ void accel_sleep()
 {
 	uint8_t result;
 	accel_write_single(ACCEL_1,CTRL_REG1,0x00); // Enter standby
+//	accel_write_single(ACCEL_2,CTRL_REG1,0x00); // Enter standby
 	accel_read_single(ACCEL_1,FF_MT_SRC,&result); // Clear pending interrupt
 	accel_write_single(ACCEL_1,CTRL_REG1,0x29); // Enter active, data rate = 12.5 Hz
 }
@@ -78,3 +79,4 @@ int16_t get_centrifugal_acceleration()
 	accel_read_double(ACCEL_2,0x03,(uint8_t*)(&b));
 	return (a>>5)+(b>>5);
 }
+

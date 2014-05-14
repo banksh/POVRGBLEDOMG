@@ -3,38 +3,40 @@ yoyo.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000008e2  00000000  00000000  00000074  2**1
+  0 .data         0000000e  00800100  00000898  0000092c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000898  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          00000004  00800100  00800100  00000956  2**0
+  2 .bss          00000004  0080010e  0080010e  0000093a  2**0
                   ALLOC
-  2 .stab         00001dd0  00000000  00000000  00000958  2**2
+  3 .stab         00001d34  00000000  00000000  0000093c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000b73  00000000  00000000  00002728  2**0
+  4 .stabstr      00000aee  00000000  00000000  00002670  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	13 c0       	rjmp	.+38     	; 0x28 <__ctors_end>
-   2:	22 c0       	rjmp	.+68     	; 0x48 <__bad_interrupt>
-   4:	21 c0       	rjmp	.+66     	; 0x48 <__bad_interrupt>
-   6:	20 c0       	rjmp	.+64     	; 0x48 <__bad_interrupt>
-   8:	1f c0       	rjmp	.+62     	; 0x48 <__bad_interrupt>
-   a:	1e c0       	rjmp	.+60     	; 0x48 <__bad_interrupt>
-   c:	1d c0       	rjmp	.+58     	; 0x48 <__bad_interrupt>
-   e:	1c c0       	rjmp	.+56     	; 0x48 <__bad_interrupt>
-  10:	1b c0       	rjmp	.+54     	; 0x48 <__bad_interrupt>
-  12:	1a c0       	rjmp	.+52     	; 0x48 <__bad_interrupt>
-  14:	19 c0       	rjmp	.+50     	; 0x48 <__bad_interrupt>
-  16:	18 c0       	rjmp	.+48     	; 0x48 <__bad_interrupt>
-  18:	17 c0       	rjmp	.+46     	; 0x48 <__bad_interrupt>
-  1a:	16 c0       	rjmp	.+44     	; 0x48 <__bad_interrupt>
-  1c:	15 c0       	rjmp	.+42     	; 0x48 <__bad_interrupt>
-  1e:	14 c0       	rjmp	.+40     	; 0x48 <__bad_interrupt>
-  20:	13 c0       	rjmp	.+38     	; 0x48 <__bad_interrupt>
-  22:	12 c0       	rjmp	.+36     	; 0x48 <__bad_interrupt>
-  24:	11 c0       	rjmp	.+34     	; 0x48 <__bad_interrupt>
-  26:	10 c0       	rjmp	.+32     	; 0x48 <__bad_interrupt>
+   2:	2d c0       	rjmp	.+90     	; 0x5e <__bad_interrupt>
+   4:	2c c0       	rjmp	.+88     	; 0x5e <__bad_interrupt>
+   6:	2b c0       	rjmp	.+86     	; 0x5e <__bad_interrupt>
+   8:	2a c0       	rjmp	.+84     	; 0x5e <__bad_interrupt>
+   a:	29 c0       	rjmp	.+82     	; 0x5e <__bad_interrupt>
+   c:	28 c0       	rjmp	.+80     	; 0x5e <__bad_interrupt>
+   e:	27 c0       	rjmp	.+78     	; 0x5e <__bad_interrupt>
+  10:	26 c0       	rjmp	.+76     	; 0x5e <__bad_interrupt>
+  12:	25 c0       	rjmp	.+74     	; 0x5e <__bad_interrupt>
+  14:	24 c0       	rjmp	.+72     	; 0x5e <__bad_interrupt>
+  16:	23 c0       	rjmp	.+70     	; 0x5e <__bad_interrupt>
+  18:	22 c0       	rjmp	.+68     	; 0x5e <__bad_interrupt>
+  1a:	21 c0       	rjmp	.+66     	; 0x5e <__bad_interrupt>
+  1c:	20 c0       	rjmp	.+64     	; 0x5e <__bad_interrupt>
+  1e:	1f c0       	rjmp	.+62     	; 0x5e <__bad_interrupt>
+  20:	1e c0       	rjmp	.+60     	; 0x5e <__bad_interrupt>
+  22:	1d c0       	rjmp	.+58     	; 0x5e <__bad_interrupt>
+  24:	1c c0       	rjmp	.+56     	; 0x5e <__bad_interrupt>
+  26:	1b c0       	rjmp	.+54     	; 0x5e <__bad_interrupt>
 
 00000028 <__ctors_end>:
   28:	11 24       	eor	r1, r1
@@ -44,1501 +46,1488 @@ Disassembly of section .text:
   30:	de bf       	out	0x3e, r29	; 62
   32:	cd bf       	out	0x3d, r28	; 61
 
-00000034 <__do_clear_bss>:
+00000034 <__do_copy_data>:
   34:	11 e0       	ldi	r17, 0x01	; 1
   36:	a0 e0       	ldi	r26, 0x00	; 0
   38:	b1 e0       	ldi	r27, 0x01	; 1
-  3a:	01 c0       	rjmp	.+2      	; 0x3e <.do_clear_bss_start>
+  3a:	e8 e9       	ldi	r30, 0x98	; 152
+  3c:	f8 e0       	ldi	r31, 0x08	; 8
+  3e:	02 c0       	rjmp	.+4      	; 0x44 <__SREG__+0x5>
+  40:	05 90       	lpm	r0, Z+
+  42:	0d 92       	st	X+, r0
+  44:	ae 30       	cpi	r26, 0x0E	; 14
+  46:	b1 07       	cpc	r27, r17
+  48:	d9 f7       	brne	.-10     	; 0x40 <__SREG__+0x1>
 
-0000003c <.do_clear_bss_loop>:
-  3c:	1d 92       	st	X+, r1
+0000004a <__do_clear_bss>:
+  4a:	11 e0       	ldi	r17, 0x01	; 1
+  4c:	ae e0       	ldi	r26, 0x0E	; 14
+  4e:	b1 e0       	ldi	r27, 0x01	; 1
+  50:	01 c0       	rjmp	.+2      	; 0x54 <.do_clear_bss_start>
 
-0000003e <.do_clear_bss_start>:
-  3e:	a4 30       	cpi	r26, 0x04	; 4
-  40:	b1 07       	cpc	r27, r17
-  42:	e1 f7       	brne	.-8      	; 0x3c <.do_clear_bss_loop>
-  44:	d3 d3       	rcall	.+1958   	; 0x7ec <main>
-  46:	4b c4       	rjmp	.+2198   	; 0x8de <_exit>
+00000052 <.do_clear_bss_loop>:
+  52:	1d 92       	st	X+, r1
 
-00000048 <__bad_interrupt>:
-  48:	db cf       	rjmp	.-74     	; 0x0 <__vectors>
+00000054 <.do_clear_bss_start>:
+  54:	a2 31       	cpi	r26, 0x12	; 18
+  56:	b1 07       	cpc	r27, r17
+  58:	e1 f7       	brne	.-8      	; 0x52 <.do_clear_bss_loop>
+  5a:	96 d3       	rcall	.+1836   	; 0x788 <main>
+  5c:	1b c4       	rjmp	.+2102   	; 0x894 <_exit>
 
-0000004a <accel_init>:
+0000005e <__bad_interrupt>:
+  5e:	d0 cf       	rjmp	.-96     	; 0x0 <__vectors>
+
+00000060 <accel_init>:
+#define FF_MT_SRC	0x16
 #define FF_MT_THS	0x17
 #define FF_MT_COUNT	0x18
-#define OUT_Y		0x03
 
 void accel_init()
 {
-  4a:	df 93       	push	r29
-  4c:	cf 93       	push	r28
-  4e:	cd b7       	in	r28, 0x3d	; 61
-  50:	de b7       	in	r29, 0x3e	; 62
-	accel_write_single(ACCEL_1,FF_CONFIG,0x78); // Motion detect
-  52:	88 e3       	ldi	r24, 0x38	; 56
-  54:	65 e1       	ldi	r22, 0x15	; 21
-  56:	48 e7       	ldi	r20, 0x78	; 120
-  58:	13 d3       	rcall	.+1574   	; 0x680 <accel_write_single>
+  60:	df 93       	push	r29
+  62:	cf 93       	push	r28
+  64:	0f 92       	push	r0
+  66:	cd b7       	in	r28, 0x3d	; 61
+  68:	de b7       	in	r29, 0x3e	; 62
+	uint8_t result;
+	accel_write_single(ACCEL_1,CTRL_REG2,0x40); // RESET
+  6a:	8a e3       	ldi	r24, 0x3A	; 58
+  6c:	90 e0       	ldi	r25, 0x00	; 0
+  6e:	6b e2       	ldi	r22, 0x2B	; 43
+  70:	70 e0       	ldi	r23, 0x00	; 0
+  72:	40 e4       	ldi	r20, 0x40	; 64
+  74:	50 e0       	ldi	r21, 0x00	; 0
+  76:	0a d3       	rcall	.+1556   	; 0x68c <accel_write_single>
+	accel_write_single(ACCEL_2,CTRL_REG2,0x40); // RESET
+  78:	88 e3       	ldi	r24, 0x38	; 56
+  7a:	90 e0       	ldi	r25, 0x00	; 0
+  7c:	6b e2       	ldi	r22, 0x2B	; 43
+  7e:	70 e0       	ldi	r23, 0x00	; 0
+  80:	40 e4       	ldi	r20, 0x40	; 64
+  82:	50 e0       	ldi	r21, 0x00	; 0
+  84:	03 d3       	rcall	.+1542   	; 0x68c <accel_write_single>
+  86:	01 c0       	rjmp	.+2      	; 0x8a <accel_init+0x2a>
+		accel_read_single(ACCEL_1,CTRL_REG2,&result);
+		if(!(result & 0x40))
+		{
+			break;
+		}
+	}
+  88:	00 00       	nop
+	uint8_t result;
+	accel_write_single(ACCEL_1,CTRL_REG2,0x40); // RESET
+	accel_write_single(ACCEL_2,CTRL_REG2,0x40); // RESET
+	for(;;)
+	{
+		accel_read_single(ACCEL_1,CTRL_REG2,&result);
+  8a:	8a e3       	ldi	r24, 0x3A	; 58
+  8c:	6b e2       	ldi	r22, 0x2B	; 43
+  8e:	9e 01       	movw	r18, r28
+  90:	2f 5f       	subi	r18, 0xFF	; 255
+  92:	3f 4f       	sbci	r19, 0xFF	; 255
+  94:	a9 01       	movw	r20, r18
+  96:	bc d2       	rcall	.+1400   	; 0x610 <accel_read_single>
+		if(!(result & 0x40))
+  98:	89 81       	ldd	r24, Y+1	; 0x01
+  9a:	88 2f       	mov	r24, r24
+  9c:	90 e0       	ldi	r25, 0x00	; 0
+  9e:	80 74       	andi	r24, 0x40	; 64
+  a0:	90 70       	andi	r25, 0x00	; 0
+  a2:	00 97       	sbiw	r24, 0x00	; 0
+  a4:	89 f7       	brne	.-30     	; 0x88 <accel_init+0x28>
+		{
+			break;
+  a6:	00 00       	nop
+  a8:	01 c0       	rjmp	.+2      	; 0xac <accel_init+0x4c>
+		accel_read_single(ACCEL_2,CTRL_REG2,&result);
+		if(!(result & 0x40))
+		{
+			break;
+		}
+	}
+  aa:	00 00       	nop
+			break;
+		}
+	}
+	for(;;)
+	{
+		accel_read_single(ACCEL_2,CTRL_REG2,&result);
+  ac:	88 e3       	ldi	r24, 0x38	; 56
+  ae:	6b e2       	ldi	r22, 0x2B	; 43
+  b0:	9e 01       	movw	r18, r28
+  b2:	2f 5f       	subi	r18, 0xFF	; 255
+  b4:	3f 4f       	sbci	r19, 0xFF	; 255
+  b6:	a9 01       	movw	r20, r18
+  b8:	ab d2       	rcall	.+1366   	; 0x610 <accel_read_single>
+		if(!(result & 0x40))
+  ba:	89 81       	ldd	r24, Y+1	; 0x01
+  bc:	88 2f       	mov	r24, r24
+  be:	90 e0       	ldi	r25, 0x00	; 0
+  c0:	80 74       	andi	r24, 0x40	; 64
+  c2:	90 70       	andi	r25, 0x00	; 0
+  c4:	00 97       	sbiw	r24, 0x00	; 0
+  c6:	89 f7       	brne	.-30     	; 0xaa <accel_init+0x4a>
+		{
+			break;
+		}
+	}
+
+	accel_write_single(ACCEL_1,FF_MT_CFG,0xF8); // Motion detect
+  c8:	8a e3       	ldi	r24, 0x3A	; 58
+  ca:	90 e0       	ldi	r25, 0x00	; 0
+  cc:	65 e1       	ldi	r22, 0x15	; 21
+  ce:	70 e0       	ldi	r23, 0x00	; 0
+  d0:	48 ef       	ldi	r20, 0xF8	; 248
+  d2:	50 e0       	ldi	r21, 0x00	; 0
+  d4:	db d2       	rcall	.+1462   	; 0x68c <accel_write_single>
 	accel_write_single(ACCEL_1,FF_MT_THS,0xC0); // Motion threshold at 2g
-  5a:	88 e3       	ldi	r24, 0x38	; 56
-  5c:	67 e1       	ldi	r22, 0x17	; 23
-  5e:	40 ec       	ldi	r20, 0xC0	; 192
-  60:	0f d3       	rcall	.+1566   	; 0x680 <accel_write_single>
+  d6:	8a e3       	ldi	r24, 0x3A	; 58
+  d8:	90 e0       	ldi	r25, 0x00	; 0
+  da:	67 e1       	ldi	r22, 0x17	; 23
+  dc:	70 e0       	ldi	r23, 0x00	; 0
+  de:	40 ec       	ldi	r20, 0xC0	; 192
+  e0:	50 e0       	ldi	r21, 0x00	; 0
+  e2:	d4 d2       	rcall	.+1448   	; 0x68c <accel_write_single>
 	accel_write_single(ACCEL_1,FF_MT_COUNT,0x01); // Debounce time at 80ms
-  62:	88 e3       	ldi	r24, 0x38	; 56
-  64:	68 e1       	ldi	r22, 0x18	; 24
-  66:	41 e0       	ldi	r20, 0x01	; 1
-  68:	0b d3       	rcall	.+1558   	; 0x680 <accel_write_single>
+  e4:	8a e3       	ldi	r24, 0x3A	; 58
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	68 e1       	ldi	r22, 0x18	; 24
+  ea:	70 e0       	ldi	r23, 0x00	; 0
+  ec:	41 e0       	ldi	r20, 0x01	; 1
+  ee:	50 e0       	ldi	r21, 0x00	; 0
+  f0:	cd d2       	rcall	.+1434   	; 0x68c <accel_write_single>
 
-	accel_write_single(ACCEL_1,CTRL_REG2,0x1C); // Low power sleep mode
-  6a:	88 e3       	ldi	r24, 0x38	; 56
-  6c:	6b e2       	ldi	r22, 0x2B	; 43
-  6e:	4c e1       	ldi	r20, 0x1C	; 28
-  70:	07 d3       	rcall	.+1550   	; 0x680 <accel_write_single>
+	accel_write_single(ACCEL_1,CTRL_REG2,0x18); // Low power sleep mode
+  f2:	8a e3       	ldi	r24, 0x3A	; 58
+  f4:	90 e0       	ldi	r25, 0x00	; 0
+  f6:	6b e2       	ldi	r22, 0x2B	; 43
+  f8:	70 e0       	ldi	r23, 0x00	; 0
+  fa:	48 e1       	ldi	r20, 0x18	; 24
+  fc:	50 e0       	ldi	r21, 0x00	; 0
+  fe:	c6 d2       	rcall	.+1420   	; 0x68c <accel_write_single>
 	accel_write_single(ACCEL_1,CTRL_REG3,0x08); // Wake up interrupt on motion
-  72:	88 e3       	ldi	r24, 0x38	; 56
-  74:	6c e2       	ldi	r22, 0x2C	; 44
-  76:	48 e0       	ldi	r20, 0x08	; 8
-  78:	03 d3       	rcall	.+1542   	; 0x680 <accel_write_single>
-	accel_write_single(ACCEL_1,CTRL_REG4,0x84); // Motion interrupt enable
-  7a:	88 e3       	ldi	r24, 0x38	; 56
-  7c:	6d e2       	ldi	r22, 0x2D	; 45
-  7e:	44 e8       	ldi	r20, 0x84	; 132
-  80:	ff d2       	rcall	.+1534   	; 0x680 <accel_write_single>
-//	accel_write_single(ACCEL_1,CTRL_REG5,0xBD); // Interrupts to INT1	
+ 100:	8a e3       	ldi	r24, 0x3A	; 58
+ 102:	90 e0       	ldi	r25, 0x00	; 0
+ 104:	6c e2       	ldi	r22, 0x2C	; 44
+ 106:	70 e0       	ldi	r23, 0x00	; 0
+ 108:	48 e0       	ldi	r20, 0x08	; 8
+ 10a:	50 e0       	ldi	r21, 0x00	; 0
+ 10c:	bf d2       	rcall	.+1406   	; 0x68c <accel_write_single>
+	accel_write_single(ACCEL_1,CTRL_REG4,0x04); // Motion interrupt enable
+ 10e:	8a e3       	ldi	r24, 0x3A	; 58
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+ 112:	6d e2       	ldi	r22, 0x2D	; 45
+ 114:	70 e0       	ldi	r23, 0x00	; 0
+ 116:	44 e0       	ldi	r20, 0x04	; 4
+ 118:	50 e0       	ldi	r21, 0x00	; 0
+ 11a:	b8 d2       	rcall	.+1392   	; 0x68c <accel_write_single>
+	accel_write_single(ACCEL_1,CTRL_REG5,0x04); // Motion interrupt to INT1	
+ 11c:	8a e3       	ldi	r24, 0x3A	; 58
+ 11e:	90 e0       	ldi	r25, 0x00	; 0
+ 120:	6e e2       	ldi	r22, 0x2E	; 46
+ 122:	70 e0       	ldi	r23, 0x00	; 0
+ 124:	44 e0       	ldi	r20, 0x04	; 4
+ 126:	50 e0       	ldi	r21, 0x00	; 0
+ 128:	b1 d2       	rcall	.+1378   	; 0x68c <accel_write_single>
+
+	accel_write_single(ACCEL_1,XYZ_DATA_CFG,0x02); // 8g
+ 12a:	8a e3       	ldi	r24, 0x3A	; 58
+ 12c:	90 e0       	ldi	r25, 0x00	; 0
+ 12e:	6e e0       	ldi	r22, 0x0E	; 14
+ 130:	70 e0       	ldi	r23, 0x00	; 0
+ 132:	42 e0       	ldi	r20, 0x02	; 2
+ 134:	50 e0       	ldi	r21, 0x00	; 0
+ 136:	aa d2       	rcall	.+1364   	; 0x68c <accel_write_single>
 }
-  82:	cf 91       	pop	r28
-  84:	df 91       	pop	r29
-  86:	08 95       	ret
+ 138:	0f 90       	pop	r0
+ 13a:	cf 91       	pop	r28
+ 13c:	df 91       	pop	r29
+ 13e:	08 95       	ret
 
-00000088 <start_sampling>:
+00000140 <accel_run>:
 
-void start_sampling()
+// Turns on accelerometers
+void accel_run()
 {
-  88:	df 93       	push	r29
-  8a:	cf 93       	push	r28
-  8c:	cd b7       	in	r28, 0x3d	; 61
-  8e:	de b7       	in	r29, 0x3e	; 62
-	accel_write_single(ACCEL_1,CTRL_REG1,0x41);
-  90:	88 e3       	ldi	r24, 0x38	; 56
-  92:	6a e2       	ldi	r22, 0x2A	; 42
-  94:	41 e4       	ldi	r20, 0x41	; 65
-  96:	f4 d2       	rcall	.+1512   	; 0x680 <accel_write_single>
-	accel_write_single(ACCEL_2,CTRL_REG1,0x41);
-  98:	8a e3       	ldi	r24, 0x3A	; 58
-  9a:	6a e2       	ldi	r22, 0x2A	; 42
-  9c:	41 e4       	ldi	r20, 0x41	; 65
-  9e:	f0 d2       	rcall	.+1504   	; 0x680 <accel_write_single>
+ 140:	df 93       	push	r29
+ 142:	cf 93       	push	r28
+ 144:	cd b7       	in	r28, 0x3d	; 61
+ 146:	de b7       	in	r29, 0x3e	; 62
+	accel_write_single(ACCEL_1,CTRL_REG1,0x00); // Enter standby
+ 148:	8a e3       	ldi	r24, 0x3A	; 58
+ 14a:	90 e0       	ldi	r25, 0x00	; 0
+ 14c:	6a e2       	ldi	r22, 0x2A	; 42
+ 14e:	70 e0       	ldi	r23, 0x00	; 0
+ 150:	40 e0       	ldi	r20, 0x00	; 0
+ 152:	50 e0       	ldi	r21, 0x00	; 0
+ 154:	9b d2       	rcall	.+1334   	; 0x68c <accel_write_single>
+	accel_write_single(ACCEL_2,CTRL_REG1,0x00);
+ 156:	88 e3       	ldi	r24, 0x38	; 56
+ 158:	90 e0       	ldi	r25, 0x00	; 0
+ 15a:	6a e2       	ldi	r22, 0x2A	; 42
+ 15c:	70 e0       	ldi	r23, 0x00	; 0
+ 15e:	40 e0       	ldi	r20, 0x00	; 0
+ 160:	50 e0       	ldi	r21, 0x00	; 0
+ 162:	94 d2       	rcall	.+1320   	; 0x68c <accel_write_single>
+
+	accel_write_single(ACCEL_2,XYZ_DATA_CFG,0x02); // 8g
+ 164:	88 e3       	ldi	r24, 0x38	; 56
+ 166:	90 e0       	ldi	r25, 0x00	; 0
+ 168:	6e e0       	ldi	r22, 0x0E	; 14
+ 16a:	70 e0       	ldi	r23, 0x00	; 0
+ 16c:	42 e0       	ldi	r20, 0x02	; 2
+ 16e:	50 e0       	ldi	r21, 0x00	; 0
+ 170:	8d d2       	rcall	.+1306   	; 0x68c <accel_write_single>
+
+	accel_write_single(ACCEL_1,CTRL_REG1,0x01); // Enter active, data rate = 800 Hz
+ 172:	8a e3       	ldi	r24, 0x3A	; 58
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	6a e2       	ldi	r22, 0x2A	; 42
+ 178:	70 e0       	ldi	r23, 0x00	; 0
+ 17a:	41 e0       	ldi	r20, 0x01	; 1
+ 17c:	50 e0       	ldi	r21, 0x00	; 0
+ 17e:	86 d2       	rcall	.+1292   	; 0x68c <accel_write_single>
+	accel_write_single(ACCEL_2,CTRL_REG1,0x01);
+ 180:	88 e3       	ldi	r24, 0x38	; 56
+ 182:	90 e0       	ldi	r25, 0x00	; 0
+ 184:	6a e2       	ldi	r22, 0x2A	; 42
+ 186:	70 e0       	ldi	r23, 0x00	; 0
+ 188:	41 e0       	ldi	r20, 0x01	; 1
+ 18a:	50 e0       	ldi	r21, 0x00	; 0
+ 18c:	7f d2       	rcall	.+1278   	; 0x68c <accel_write_single>
 }
-  a0:	cf 91       	pop	r28
-  a2:	df 91       	pop	r29
-  a4:	08 95       	ret
+ 18e:	cf 91       	pop	r28
+ 190:	df 91       	pop	r29
+ 192:	08 95       	ret
 
-000000a6 <get_centrifugal_acceleration>:
+00000194 <accel_sleep>:
 
+void accel_sleep()
+{
+ 194:	df 93       	push	r29
+ 196:	cf 93       	push	r28
+ 198:	0f 92       	push	r0
+ 19a:	cd b7       	in	r28, 0x3d	; 61
+ 19c:	de b7       	in	r29, 0x3e	; 62
+	uint8_t result;
+	accel_write_single(ACCEL_1,CTRL_REG1,0x00); // Enter standby
+ 19e:	8a e3       	ldi	r24, 0x3A	; 58
+ 1a0:	90 e0       	ldi	r25, 0x00	; 0
+ 1a2:	6a e2       	ldi	r22, 0x2A	; 42
+ 1a4:	70 e0       	ldi	r23, 0x00	; 0
+ 1a6:	40 e0       	ldi	r20, 0x00	; 0
+ 1a8:	50 e0       	ldi	r21, 0x00	; 0
+ 1aa:	70 d2       	rcall	.+1248   	; 0x68c <accel_write_single>
+//	accel_write_single(ACCEL_2,CTRL_REG1,0x00); // Enter standby
+	accel_read_single(ACCEL_1,FF_MT_SRC,&result); // Clear pending interrupt
+ 1ac:	8a e3       	ldi	r24, 0x3A	; 58
+ 1ae:	66 e1       	ldi	r22, 0x16	; 22
+ 1b0:	9e 01       	movw	r18, r28
+ 1b2:	2f 5f       	subi	r18, 0xFF	; 255
+ 1b4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1b6:	a9 01       	movw	r20, r18
+ 1b8:	2b d2       	rcall	.+1110   	; 0x610 <accel_read_single>
+	accel_write_single(ACCEL_1,CTRL_REG1,0x29); // Enter active, data rate = 12.5 Hz
+ 1ba:	8a e3       	ldi	r24, 0x3A	; 58
+ 1bc:	90 e0       	ldi	r25, 0x00	; 0
+ 1be:	6a e2       	ldi	r22, 0x2A	; 42
+ 1c0:	70 e0       	ldi	r23, 0x00	; 0
+ 1c2:	49 e2       	ldi	r20, 0x29	; 41
+ 1c4:	50 e0       	ldi	r21, 0x00	; 0
+ 1c6:	62 d2       	rcall	.+1220   	; 0x68c <accel_write_single>
+}
+ 1c8:	0f 90       	pop	r0
+ 1ca:	cf 91       	pop	r28
+ 1cc:	df 91       	pop	r29
+ 1ce:	08 95       	ret
+
+000001d0 <get_centrifugal_acceleration>:
+
+// Returns a 13-bit signed integer representing the centrifugal acceleration
 int16_t get_centrifugal_acceleration()
 {
-  a6:	df 93       	push	r29
-  a8:	cf 93       	push	r28
-  aa:	00 d0       	rcall	.+0      	; 0xac <get_centrifugal_acceleration+0x6>
-  ac:	00 d0       	rcall	.+0      	; 0xae <get_centrifugal_acceleration+0x8>
-  ae:	cd b7       	in	r28, 0x3d	; 61
-  b0:	de b7       	in	r29, 0x3e	; 62
+ 1d0:	df 93       	push	r29
+ 1d2:	cf 93       	push	r28
+ 1d4:	00 d0       	rcall	.+0      	; 0x1d6 <get_centrifugal_acceleration+0x6>
+ 1d6:	00 d0       	rcall	.+0      	; 0x1d8 <get_centrifugal_acceleration+0x8>
+ 1d8:	cd b7       	in	r28, 0x3d	; 61
+ 1da:	de b7       	in	r29, 0x3e	; 62
 	int16_t a,b;
 	accel_read_double(ACCEL_1,0x03,(uint8_t*)(&a));
-  b2:	9e 01       	movw	r18, r28
-  b4:	2f 5f       	subi	r18, 0xFF	; 255
-  b6:	3f 4f       	sbci	r19, 0xFF	; 255
-  b8:	88 e3       	ldi	r24, 0x38	; 56
-  ba:	90 e0       	ldi	r25, 0x00	; 0
-  bc:	63 e0       	ldi	r22, 0x03	; 3
-  be:	70 e0       	ldi	r23, 0x00	; 0
-  c0:	a9 01       	movw	r20, r18
-  c2:	bd d2       	rcall	.+1402   	; 0x63e <accel_read_double>
+ 1dc:	9e 01       	movw	r18, r28
+ 1de:	2f 5f       	subi	r18, 0xFF	; 255
+ 1e0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1e2:	8a e3       	ldi	r24, 0x3A	; 58
+ 1e4:	90 e0       	ldi	r25, 0x00	; 0
+ 1e6:	63 e0       	ldi	r22, 0x03	; 3
+ 1e8:	70 e0       	ldi	r23, 0x00	; 0
+ 1ea:	a9 01       	movw	r20, r18
+ 1ec:	2e d2       	rcall	.+1116   	; 0x64a <accel_read_double>
 	accel_read_double(ACCEL_2,0x03,(uint8_t*)(&b));
-  c4:	9e 01       	movw	r18, r28
-  c6:	2d 5f       	subi	r18, 0xFD	; 253
-  c8:	3f 4f       	sbci	r19, 0xFF	; 255
-  ca:	8a e3       	ldi	r24, 0x3A	; 58
-  cc:	90 e0       	ldi	r25, 0x00	; 0
-  ce:	63 e0       	ldi	r22, 0x03	; 3
-  d0:	70 e0       	ldi	r23, 0x00	; 0
-  d2:	a9 01       	movw	r20, r18
-  d4:	b4 d2       	rcall	.+1384   	; 0x63e <accel_read_double>
-	return (a+b)>>4;
-  d6:	29 81       	ldd	r18, Y+1	; 0x01
-  d8:	3a 81       	ldd	r19, Y+2	; 0x02
-  da:	8b 81       	ldd	r24, Y+3	; 0x03
-  dc:	9c 81       	ldd	r25, Y+4	; 0x04
-  de:	82 0f       	add	r24, r18
-  e0:	93 1f       	adc	r25, r19
-  e2:	95 95       	asr	r25
-  e4:	87 95       	ror	r24
-  e6:	95 95       	asr	r25
-  e8:	87 95       	ror	r24
-  ea:	95 95       	asr	r25
-  ec:	87 95       	ror	r24
-  ee:	95 95       	asr	r25
-  f0:	87 95       	ror	r24
+ 1ee:	9e 01       	movw	r18, r28
+ 1f0:	2d 5f       	subi	r18, 0xFD	; 253
+ 1f2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1f4:	88 e3       	ldi	r24, 0x38	; 56
+ 1f6:	90 e0       	ldi	r25, 0x00	; 0
+ 1f8:	63 e0       	ldi	r22, 0x03	; 3
+ 1fa:	70 e0       	ldi	r23, 0x00	; 0
+ 1fc:	a9 01       	movw	r20, r18
+ 1fe:	25 d2       	rcall	.+1098   	; 0x64a <accel_read_double>
+	return (a>>5)+(b>>5);
+ 200:	89 81       	ldd	r24, Y+1	; 0x01
+ 202:	9a 81       	ldd	r25, Y+2	; 0x02
+ 204:	9c 01       	movw	r18, r24
+ 206:	35 95       	asr	r19
+ 208:	27 95       	ror	r18
+ 20a:	35 95       	asr	r19
+ 20c:	27 95       	ror	r18
+ 20e:	35 95       	asr	r19
+ 210:	27 95       	ror	r18
+ 212:	35 95       	asr	r19
+ 214:	27 95       	ror	r18
+ 216:	35 95       	asr	r19
+ 218:	27 95       	ror	r18
+ 21a:	8b 81       	ldd	r24, Y+3	; 0x03
+ 21c:	9c 81       	ldd	r25, Y+4	; 0x04
+ 21e:	95 95       	asr	r25
+ 220:	87 95       	ror	r24
+ 222:	95 95       	asr	r25
+ 224:	87 95       	ror	r24
+ 226:	95 95       	asr	r25
+ 228:	87 95       	ror	r24
+ 22a:	95 95       	asr	r25
+ 22c:	87 95       	ror	r24
+ 22e:	95 95       	asr	r25
+ 230:	87 95       	ror	r24
+ 232:	82 0f       	add	r24, r18
+ 234:	93 1f       	adc	r25, r19
 }
-  f2:	0f 90       	pop	r0
-  f4:	0f 90       	pop	r0
-  f6:	0f 90       	pop	r0
-  f8:	0f 90       	pop	r0
-  fa:	cf 91       	pop	r28
-  fc:	df 91       	pop	r29
-  fe:	08 95       	ret
+ 236:	0f 90       	pop	r0
+ 238:	0f 90       	pop	r0
+ 23a:	0f 90       	pop	r0
+ 23c:	0f 90       	pop	r0
+ 23e:	cf 91       	pop	r28
+ 240:	df 91       	pop	r29
+ 242:	08 95       	ret
 
-00000100 <get_x_acceleration>:
-int16_t get_x_acceleration()
-{
- 100:	df 93       	push	r29
- 102:	cf 93       	push	r28
- 104:	00 d0       	rcall	.+0      	; 0x106 <get_x_acceleration+0x6>
- 106:	00 d0       	rcall	.+0      	; 0x108 <get_x_acceleration+0x8>
- 108:	cd b7       	in	r28, 0x3d	; 61
- 10a:	de b7       	in	r29, 0x3e	; 62
-	int16_t a,b;
-	accel_read_double(ACCEL_1,0x03,(uint8_t*)(&a));
- 10c:	9e 01       	movw	r18, r28
- 10e:	2f 5f       	subi	r18, 0xFF	; 255
- 110:	3f 4f       	sbci	r19, 0xFF	; 255
- 112:	88 e3       	ldi	r24, 0x38	; 56
- 114:	90 e0       	ldi	r25, 0x00	; 0
- 116:	63 e0       	ldi	r22, 0x03	; 3
- 118:	70 e0       	ldi	r23, 0x00	; 0
- 11a:	a9 01       	movw	r20, r18
- 11c:	90 d2       	rcall	.+1312   	; 0x63e <accel_read_double>
-	accel_read_double(ACCEL_2,0x03,(uint8_t*)(&b));
- 11e:	9e 01       	movw	r18, r28
- 120:	2d 5f       	subi	r18, 0xFD	; 253
- 122:	3f 4f       	sbci	r19, 0xFF	; 255
- 124:	8a e3       	ldi	r24, 0x3A	; 58
- 126:	90 e0       	ldi	r25, 0x00	; 0
- 128:	63 e0       	ldi	r22, 0x03	; 3
- 12a:	70 e0       	ldi	r23, 0x00	; 0
- 12c:	a9 01       	movw	r20, r18
- 12e:	87 d2       	rcall	.+1294   	; 0x63e <accel_read_double>
-	return (a-b)>>4;
- 130:	29 81       	ldd	r18, Y+1	; 0x01
- 132:	3a 81       	ldd	r19, Y+2	; 0x02
- 134:	8b 81       	ldd	r24, Y+3	; 0x03
- 136:	9c 81       	ldd	r25, Y+4	; 0x04
- 138:	a9 01       	movw	r20, r18
- 13a:	48 1b       	sub	r20, r24
- 13c:	59 0b       	sbc	r21, r25
- 13e:	ca 01       	movw	r24, r20
- 140:	95 95       	asr	r25
- 142:	87 95       	ror	r24
- 144:	95 95       	asr	r25
- 146:	87 95       	ror	r24
- 148:	95 95       	asr	r25
- 14a:	87 95       	ror	r24
- 14c:	95 95       	asr	r25
- 14e:	87 95       	ror	r24
-}
- 150:	0f 90       	pop	r0
- 152:	0f 90       	pop	r0
- 154:	0f 90       	pop	r0
- 156:	0f 90       	pop	r0
- 158:	cf 91       	pop	r28
- 15a:	df 91       	pop	r29
- 15c:	08 95       	ret
-
-0000015e <read_accel_1>:
-
-int16_t read_accel_1()
-{
- 15e:	df 93       	push	r29
- 160:	cf 93       	push	r28
- 162:	00 d0       	rcall	.+0      	; 0x164 <read_accel_1+0x6>
- 164:	cd b7       	in	r28, 0x3d	; 61
- 166:	de b7       	in	r29, 0x3e	; 62
-	int16_t a;
-	accel_read_double(ACCEL_1,0x03,(uint8_t*)(&a));
- 168:	9e 01       	movw	r18, r28
- 16a:	2f 5f       	subi	r18, 0xFF	; 255
- 16c:	3f 4f       	sbci	r19, 0xFF	; 255
- 16e:	88 e3       	ldi	r24, 0x38	; 56
- 170:	90 e0       	ldi	r25, 0x00	; 0
- 172:	63 e0       	ldi	r22, 0x03	; 3
- 174:	70 e0       	ldi	r23, 0x00	; 0
- 176:	a9 01       	movw	r20, r18
- 178:	62 d2       	rcall	.+1220   	; 0x63e <accel_read_double>
-	return a>>4;
- 17a:	89 81       	ldd	r24, Y+1	; 0x01
- 17c:	9a 81       	ldd	r25, Y+2	; 0x02
- 17e:	95 95       	asr	r25
- 180:	87 95       	ror	r24
- 182:	95 95       	asr	r25
- 184:	87 95       	ror	r24
- 186:	95 95       	asr	r25
- 188:	87 95       	ror	r24
- 18a:	95 95       	asr	r25
- 18c:	87 95       	ror	r24
-}
- 18e:	0f 90       	pop	r0
- 190:	0f 90       	pop	r0
- 192:	cf 91       	pop	r28
- 194:	df 91       	pop	r29
- 196:	08 95       	ret
-
-00000198 <accel_standby>:
-
-void accel_standby()
-{
- 198:	df 93       	push	r29
- 19a:	cf 93       	push	r28
- 19c:	cd b7       	in	r28, 0x3d	; 61
- 19e:	de b7       	in	r29, 0x3e	; 62
-	accel_write_single(ACCEL_1,CTRL_REG1,0x40); // Clears ACTIVE bit, sets sample rate at 12.5 Hz
- 1a0:	88 e3       	ldi	r24, 0x38	; 56
- 1a2:	6a e2       	ldi	r22, 0x2A	; 42
- 1a4:	40 e4       	ldi	r20, 0x40	; 64
- 1a6:	6c d2       	rcall	.+1240   	; 0x680 <accel_write_single>
-	accel_write_single(ACCEL_2,CTRL_REG1,0x40);
- 1a8:	8a e3       	ldi	r24, 0x3A	; 58
- 1aa:	6a e2       	ldi	r22, 0x2A	; 42
- 1ac:	40 e4       	ldi	r20, 0x40	; 64
- 1ae:	68 d2       	rcall	.+1232   	; 0x680 <accel_write_single>
-}
- 1b0:	cf 91       	pop	r28
- 1b2:	df 91       	pop	r29
- 1b4:	08 95       	ret
-
-000001b6 <init>:
-void error(uint8_t code);
+00000244 <init>:
 
 uint8_t black[4]={0,0,0,0};
 
+// Configure chip
 void init()
 {
- 1b6:	df 93       	push	r29
- 1b8:	cf 93       	push	r28
- 1ba:	cd b7       	in	r28, 0x3d	; 61
- 1bc:	de b7       	in	r29, 0x3e	; 62
-	DDRB |= (1<<DDB3) | (1<<DDB5) | (1<<DDB2); // MOSI, SCK, and P-fet
- 1be:	84 e2       	ldi	r24, 0x24	; 36
- 1c0:	90 e0       	ldi	r25, 0x00	; 0
- 1c2:	24 e2       	ldi	r18, 0x24	; 36
- 1c4:	30 e0       	ldi	r19, 0x00	; 0
- 1c6:	f9 01       	movw	r30, r18
- 1c8:	20 81       	ld	r18, Z
- 1ca:	2c 62       	ori	r18, 0x2C	; 44
- 1cc:	fc 01       	movw	r30, r24
- 1ce:	20 83       	st	Z, r18
+ 244:	df 93       	push	r29
+ 246:	cf 93       	push	r28
+ 248:	cd b7       	in	r28, 0x3d	; 61
+ 24a:	de b7       	in	r29, 0x3e	; 62
+	DDRB |= (1<<DDB3) | (1<<DDB5) | (1<<DDB2); // MOSI, SCK, and 3V_EN
+ 24c:	84 e2       	ldi	r24, 0x24	; 36
+ 24e:	90 e0       	ldi	r25, 0x00	; 0
+ 250:	24 e2       	ldi	r18, 0x24	; 36
+ 252:	30 e0       	ldi	r19, 0x00	; 0
+ 254:	f9 01       	movw	r30, r18
+ 256:	20 81       	ld	r18, Z
+ 258:	2c 62       	ori	r18, 0x2C	; 44
+ 25a:	fc 01       	movw	r30, r24
+ 25c:	20 83       	st	Z, r18
 	DDRD |= (1<<DDD6) | (1<<DDD7); // LED Enable and Latch
- 1d0:	8a e2       	ldi	r24, 0x2A	; 42
- 1d2:	90 e0       	ldi	r25, 0x00	; 0
- 1d4:	2a e2       	ldi	r18, 0x2A	; 42
- 1d6:	30 e0       	ldi	r19, 0x00	; 0
- 1d8:	f9 01       	movw	r30, r18
- 1da:	20 81       	ld	r18, Z
- 1dc:	20 6c       	ori	r18, 0xC0	; 192
- 1de:	fc 01       	movw	r30, r24
- 1e0:	20 83       	st	Z, r18
-
-	SPCR |= (1<<SPE) | (1<<MSTR); // SPI Configuration
- 1e2:	8c e4       	ldi	r24, 0x4C	; 76
- 1e4:	90 e0       	ldi	r25, 0x00	; 0
- 1e6:	2c e4       	ldi	r18, 0x4C	; 76
- 1e8:	30 e0       	ldi	r19, 0x00	; 0
- 1ea:	f9 01       	movw	r30, r18
- 1ec:	20 81       	ld	r18, Z
- 1ee:	20 65       	ori	r18, 0x50	; 80
- 1f0:	fc 01       	movw	r30, r24
- 1f2:	20 83       	st	Z, r18
-
-	PORTD |= (1<<PORTD7); // Latch
- 1f4:	8b e2       	ldi	r24, 0x2B	; 43
- 1f6:	90 e0       	ldi	r25, 0x00	; 0
- 1f8:	2b e2       	ldi	r18, 0x2B	; 43
- 1fa:	30 e0       	ldi	r19, 0x00	; 0
- 1fc:	f9 01       	movw	r30, r18
- 1fe:	20 81       	ld	r18, Z
- 200:	20 68       	ori	r18, 0x80	; 128
- 202:	fc 01       	movw	r30, r24
- 204:	20 83       	st	Z, r18
-
-	write_leds(black);
- 206:	80 e0       	ldi	r24, 0x00	; 0
- 208:	91 e0       	ldi	r25, 0x01	; 1
- 20a:	23 d0       	rcall	.+70     	; 0x252 <write_leds>
-}
- 20c:	cf 91       	pop	r28
- 20e:	df 91       	pop	r29
- 210:	08 95       	ret
-
-00000212 <sleep>:
-
-void sleep()
-{
- 212:	df 93       	push	r29
- 214:	cf 93       	push	r28
- 216:	cd b7       	in	r28, 0x3d	; 61
- 218:	de b7       	in	r29, 0x3e	; 62
-	PORTB |= (1<<PORTB2); // Turn off P-fet
- 21a:	85 e2       	ldi	r24, 0x25	; 37
- 21c:	90 e0       	ldi	r25, 0x00	; 0
- 21e:	25 e2       	ldi	r18, 0x25	; 37
- 220:	30 e0       	ldi	r19, 0x00	; 0
- 222:	f9 01       	movw	r30, r18
- 224:	20 81       	ld	r18, Z
- 226:	24 60       	ori	r18, 0x04	; 4
- 228:	fc 01       	movw	r30, r24
- 22a:	20 83       	st	Z, r18
-//	SMCR |= (1<<SM1) | (1<<SE); // Sleep mode is power-down, enable sleep mode
-	
-}
- 22c:	cf 91       	pop	r28
- 22e:	df 91       	pop	r29
- 230:	08 95       	ret
-
-00000232 <wake>:
-
-void wake()
-{
- 232:	df 93       	push	r29
- 234:	cf 93       	push	r28
- 236:	cd b7       	in	r28, 0x3d	; 61
- 238:	de b7       	in	r29, 0x3e	; 62
-	PORTB &= ~(1<<PORTB2);
- 23a:	85 e2       	ldi	r24, 0x25	; 37
- 23c:	90 e0       	ldi	r25, 0x00	; 0
- 23e:	25 e2       	ldi	r18, 0x25	; 37
- 240:	30 e0       	ldi	r19, 0x00	; 0
- 242:	f9 01       	movw	r30, r18
- 244:	20 81       	ld	r18, Z
- 246:	2b 7f       	andi	r18, 0xFB	; 251
- 248:	fc 01       	movw	r30, r24
- 24a:	20 83       	st	Z, r18
-}
- 24c:	cf 91       	pop	r28
- 24e:	df 91       	pop	r29
- 250:	08 95       	ret
-
-00000252 <write_leds>:
-
-void write_leds(uint8_t* data)
-{
- 252:	df 93       	push	r29
- 254:	cf 93       	push	r28
- 256:	00 d0       	rcall	.+0      	; 0x258 <write_leds+0x6>
- 258:	cd b7       	in	r28, 0x3d	; 61
- 25a:	de b7       	in	r29, 0x3e	; 62
- 25c:	9a 83       	std	Y+2, r25	; 0x02
- 25e:	89 83       	std	Y+1, r24	; 0x01
-	SPDR = data[0];
- 260:	8e e4       	ldi	r24, 0x4E	; 78
- 262:	90 e0       	ldi	r25, 0x00	; 0
- 264:	29 81       	ldd	r18, Y+1	; 0x01
- 266:	3a 81       	ldd	r19, Y+2	; 0x02
- 268:	f9 01       	movw	r30, r18
- 26a:	20 81       	ld	r18, Z
+ 25e:	8a e2       	ldi	r24, 0x2A	; 42
+ 260:	90 e0       	ldi	r25, 0x00	; 0
+ 262:	2a e2       	ldi	r18, 0x2A	; 42
+ 264:	30 e0       	ldi	r19, 0x00	; 0
+ 266:	f9 01       	movw	r30, r18
+ 268:	20 81       	ld	r18, Z
+ 26a:	20 6c       	ori	r18, 0xC0	; 192
  26c:	fc 01       	movw	r30, r24
  26e:	20 83       	st	Z, r18
-	while(!(SPSR & (1<<SPIF)));
- 270:	00 00       	nop
- 272:	8d e4       	ldi	r24, 0x4D	; 77
- 274:	90 e0       	ldi	r25, 0x00	; 0
- 276:	fc 01       	movw	r30, r24
- 278:	80 81       	ld	r24, Z
- 27a:	88 23       	and	r24, r24
- 27c:	d4 f7       	brge	.-12     	; 0x272 <write_leds+0x20>
-	SPDR = data[1];
- 27e:	8e e4       	ldi	r24, 0x4E	; 78
- 280:	90 e0       	ldi	r25, 0x00	; 0
- 282:	29 81       	ldd	r18, Y+1	; 0x01
- 284:	3a 81       	ldd	r19, Y+2	; 0x02
- 286:	2f 5f       	subi	r18, 0xFF	; 255
- 288:	3f 4f       	sbci	r19, 0xFF	; 255
+	DDRC |= (1<<DDC0); // Flash CS
+ 270:	87 e2       	ldi	r24, 0x27	; 39
+ 272:	90 e0       	ldi	r25, 0x00	; 0
+ 274:	27 e2       	ldi	r18, 0x27	; 39
+ 276:	30 e0       	ldi	r19, 0x00	; 0
+ 278:	f9 01       	movw	r30, r18
+ 27a:	20 81       	ld	r18, Z
+ 27c:	21 60       	ori	r18, 0x01	; 1
+ 27e:	fc 01       	movw	r30, r24
+ 280:	20 83       	st	Z, r18
+
+	PORTC |= (1<<PC0); // Deselect flash
+ 282:	88 e2       	ldi	r24, 0x28	; 40
+ 284:	90 e0       	ldi	r25, 0x00	; 0
+ 286:	28 e2       	ldi	r18, 0x28	; 40
+ 288:	30 e0       	ldi	r19, 0x00	; 0
  28a:	f9 01       	movw	r30, r18
  28c:	20 81       	ld	r18, Z
- 28e:	fc 01       	movw	r30, r24
- 290:	20 83       	st	Z, r18
-	while(!(SPSR & (1<<SPIF)));
- 292:	00 00       	nop
- 294:	8d e4       	ldi	r24, 0x4D	; 77
- 296:	90 e0       	ldi	r25, 0x00	; 0
- 298:	fc 01       	movw	r30, r24
- 29a:	80 81       	ld	r24, Z
- 29c:	88 23       	and	r24, r24
- 29e:	d4 f7       	brge	.-12     	; 0x294 <write_leds+0x42>
-	SPDR = data[2];
- 2a0:	8e e4       	ldi	r24, 0x4E	; 78
- 2a2:	90 e0       	ldi	r25, 0x00	; 0
- 2a4:	29 81       	ldd	r18, Y+1	; 0x01
- 2a6:	3a 81       	ldd	r19, Y+2	; 0x02
- 2a8:	2e 5f       	subi	r18, 0xFE	; 254
- 2aa:	3f 4f       	sbci	r19, 0xFF	; 255
- 2ac:	f9 01       	movw	r30, r18
- 2ae:	20 81       	ld	r18, Z
- 2b0:	fc 01       	movw	r30, r24
- 2b2:	20 83       	st	Z, r18
-	while(!(SPSR & (1<<SPIF)));
- 2b4:	00 00       	nop
- 2b6:	8d e4       	ldi	r24, 0x4D	; 77
- 2b8:	90 e0       	ldi	r25, 0x00	; 0
- 2ba:	fc 01       	movw	r30, r24
- 2bc:	80 81       	ld	r24, Z
- 2be:	88 23       	and	r24, r24
- 2c0:	d4 f7       	brge	.-12     	; 0x2b6 <write_leds+0x64>
-	SPDR = data[3];
- 2c2:	8e e4       	ldi	r24, 0x4E	; 78
- 2c4:	90 e0       	ldi	r25, 0x00	; 0
- 2c6:	29 81       	ldd	r18, Y+1	; 0x01
- 2c8:	3a 81       	ldd	r19, Y+2	; 0x02
- 2ca:	2d 5f       	subi	r18, 0xFD	; 253
- 2cc:	3f 4f       	sbci	r19, 0xFF	; 255
- 2ce:	f9 01       	movw	r30, r18
- 2d0:	20 81       	ld	r18, Z
- 2d2:	fc 01       	movw	r30, r24
- 2d4:	20 83       	st	Z, r18
-	while(!(SPSR & (1<<SPIF)));
- 2d6:	00 00       	nop
- 2d8:	8d e4       	ldi	r24, 0x4D	; 77
- 2da:	90 e0       	ldi	r25, 0x00	; 0
- 2dc:	fc 01       	movw	r30, r24
- 2de:	80 81       	ld	r24, Z
- 2e0:	88 23       	and	r24, r24
- 2e2:	d4 f7       	brge	.-12     	; 0x2d8 <write_leds+0x86>
+ 28e:	21 60       	ori	r18, 0x01	; 1
+ 290:	fc 01       	movw	r30, r24
+ 292:	20 83       	st	Z, r18
 
-	PORTD |= (1<<PORTD7);
- 2e4:	8b e2       	ldi	r24, 0x2B	; 43
- 2e6:	90 e0       	ldi	r25, 0x00	; 0
- 2e8:	2b e2       	ldi	r18, 0x2B	; 43
- 2ea:	30 e0       	ldi	r19, 0x00	; 0
- 2ec:	f9 01       	movw	r30, r18
- 2ee:	20 81       	ld	r18, Z
- 2f0:	20 68       	ori	r18, 0x80	; 128
- 2f2:	fc 01       	movw	r30, r24
- 2f4:	20 83       	st	Z, r18
-	PORTD &= ~(1<<PORTD7);
- 2f6:	8b e2       	ldi	r24, 0x2B	; 43
+	SPCR |= (1<<SPE) | (1<<MSTR); // SPI Configuration
+ 294:	8c e4       	ldi	r24, 0x4C	; 76
+ 296:	90 e0       	ldi	r25, 0x00	; 0
+ 298:	2c e4       	ldi	r18, 0x4C	; 76
+ 29a:	30 e0       	ldi	r19, 0x00	; 0
+ 29c:	f9 01       	movw	r30, r18
+ 29e:	20 81       	ld	r18, Z
+ 2a0:	20 65       	ori	r18, 0x50	; 80
+ 2a2:	fc 01       	movw	r30, r24
+ 2a4:	20 83       	st	Z, r18
+	SPSR |= (1<<SPI2X);
+ 2a6:	8d e4       	ldi	r24, 0x4D	; 77
+ 2a8:	90 e0       	ldi	r25, 0x00	; 0
+ 2aa:	2d e4       	ldi	r18, 0x4D	; 77
+ 2ac:	30 e0       	ldi	r19, 0x00	; 0
+ 2ae:	f9 01       	movw	r30, r18
+ 2b0:	20 81       	ld	r18, Z
+ 2b2:	21 60       	ori	r18, 0x01	; 1
+ 2b4:	fc 01       	movw	r30, r24
+ 2b6:	20 83       	st	Z, r18
+
+	PORTD |= (1<<PORTD7); // Latch
+ 2b8:	8b e2       	ldi	r24, 0x2B	; 43
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	2b e2       	ldi	r18, 0x2B	; 43
+ 2be:	30 e0       	ldi	r19, 0x00	; 0
+ 2c0:	f9 01       	movw	r30, r18
+ 2c2:	20 81       	ld	r18, Z
+ 2c4:	20 68       	ori	r18, 0x80	; 128
+ 2c6:	fc 01       	movw	r30, r24
+ 2c8:	20 83       	st	Z, r18
+
+	PORTB &= ~(1<<PB2); // Turn power on to everything
+ 2ca:	85 e2       	ldi	r24, 0x25	; 37
+ 2cc:	90 e0       	ldi	r25, 0x00	; 0
+ 2ce:	25 e2       	ldi	r18, 0x25	; 37
+ 2d0:	30 e0       	ldi	r19, 0x00	; 0
+ 2d2:	f9 01       	movw	r30, r18
+ 2d4:	20 81       	ld	r18, Z
+ 2d6:	2b 7f       	andi	r18, 0xFB	; 251
+ 2d8:	fc 01       	movw	r30, r24
+ 2da:	20 83       	st	Z, r18
+
+	write_leds(black);
+ 2dc:	8e e0       	ldi	r24, 0x0E	; 14
+ 2de:	91 e0       	ldi	r25, 0x01	; 1
+ 2e0:	03 d0       	rcall	.+6      	; 0x2e8 <write_leds>
+}
+ 2e2:	cf 91       	pop	r28
+ 2e4:	df 91       	pop	r29
+ 2e6:	08 95       	ret
+
+000002e8 <write_leds>:
+
+// Turn on the LEDs according to a 4-byte frame
+void write_leds(uint8_t* data)
+{
+ 2e8:	df 93       	push	r29
+ 2ea:	cf 93       	push	r28
+ 2ec:	00 d0       	rcall	.+0      	; 0x2ee <write_leds+0x6>
+ 2ee:	cd b7       	in	r28, 0x3d	; 61
+ 2f0:	de b7       	in	r29, 0x3e	; 62
+ 2f2:	9a 83       	std	Y+2, r25	; 0x02
+ 2f4:	89 83       	std	Y+1, r24	; 0x01
+	SPDR = data[0];
+ 2f6:	8e e4       	ldi	r24, 0x4E	; 78
  2f8:	90 e0       	ldi	r25, 0x00	; 0
- 2fa:	2b e2       	ldi	r18, 0x2B	; 43
- 2fc:	30 e0       	ldi	r19, 0x00	; 0
+ 2fa:	29 81       	ldd	r18, Y+1	; 0x01
+ 2fc:	3a 81       	ldd	r19, Y+2	; 0x02
  2fe:	f9 01       	movw	r30, r18
  300:	20 81       	ld	r18, Z
- 302:	2f 77       	andi	r18, 0x7F	; 127
- 304:	fc 01       	movw	r30, r24
- 306:	20 83       	st	Z, r18
+ 302:	fc 01       	movw	r30, r24
+ 304:	20 83       	st	Z, r18
+	while(!(SPSR & (1<<SPIF)));
+ 306:	00 00       	nop
+ 308:	8d e4       	ldi	r24, 0x4D	; 77
+ 30a:	90 e0       	ldi	r25, 0x00	; 0
+ 30c:	fc 01       	movw	r30, r24
+ 30e:	80 81       	ld	r24, Z
+ 310:	88 23       	and	r24, r24
+ 312:	d4 f7       	brge	.-12     	; 0x308 <write_leds+0x20>
+	SPDR = data[1];
+ 314:	8e e4       	ldi	r24, 0x4E	; 78
+ 316:	90 e0       	ldi	r25, 0x00	; 0
+ 318:	29 81       	ldd	r18, Y+1	; 0x01
+ 31a:	3a 81       	ldd	r19, Y+2	; 0x02
+ 31c:	2f 5f       	subi	r18, 0xFF	; 255
+ 31e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 320:	f9 01       	movw	r30, r18
+ 322:	20 81       	ld	r18, Z
+ 324:	fc 01       	movw	r30, r24
+ 326:	20 83       	st	Z, r18
+	while(!(SPSR & (1<<SPIF)));
+ 328:	00 00       	nop
+ 32a:	8d e4       	ldi	r24, 0x4D	; 77
+ 32c:	90 e0       	ldi	r25, 0x00	; 0
+ 32e:	fc 01       	movw	r30, r24
+ 330:	80 81       	ld	r24, Z
+ 332:	88 23       	and	r24, r24
+ 334:	d4 f7       	brge	.-12     	; 0x32a <write_leds+0x42>
+	SPDR = data[2];
+ 336:	8e e4       	ldi	r24, 0x4E	; 78
+ 338:	90 e0       	ldi	r25, 0x00	; 0
+ 33a:	29 81       	ldd	r18, Y+1	; 0x01
+ 33c:	3a 81       	ldd	r19, Y+2	; 0x02
+ 33e:	2e 5f       	subi	r18, 0xFE	; 254
+ 340:	3f 4f       	sbci	r19, 0xFF	; 255
+ 342:	f9 01       	movw	r30, r18
+ 344:	20 81       	ld	r18, Z
+ 346:	fc 01       	movw	r30, r24
+ 348:	20 83       	st	Z, r18
+	while(!(SPSR & (1<<SPIF)));
+ 34a:	00 00       	nop
+ 34c:	8d e4       	ldi	r24, 0x4D	; 77
+ 34e:	90 e0       	ldi	r25, 0x00	; 0
+ 350:	fc 01       	movw	r30, r24
+ 352:	80 81       	ld	r24, Z
+ 354:	88 23       	and	r24, r24
+ 356:	d4 f7       	brge	.-12     	; 0x34c <write_leds+0x64>
+	SPDR = data[3];
+ 358:	8e e4       	ldi	r24, 0x4E	; 78
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	29 81       	ldd	r18, Y+1	; 0x01
+ 35e:	3a 81       	ldd	r19, Y+2	; 0x02
+ 360:	2d 5f       	subi	r18, 0xFD	; 253
+ 362:	3f 4f       	sbci	r19, 0xFF	; 255
+ 364:	f9 01       	movw	r30, r18
+ 366:	20 81       	ld	r18, Z
+ 368:	fc 01       	movw	r30, r24
+ 36a:	20 83       	st	Z, r18
+	while(!(SPSR & (1<<SPIF)));
+ 36c:	00 00       	nop
+ 36e:	8d e4       	ldi	r24, 0x4D	; 77
+ 370:	90 e0       	ldi	r25, 0x00	; 0
+ 372:	fc 01       	movw	r30, r24
+ 374:	80 81       	ld	r24, Z
+ 376:	88 23       	and	r24, r24
+ 378:	d4 f7       	brge	.-12     	; 0x36e <write_leds+0x86>
+
+	PORTD |= (1<<PORTD7);
+ 37a:	8b e2       	ldi	r24, 0x2B	; 43
+ 37c:	90 e0       	ldi	r25, 0x00	; 0
+ 37e:	2b e2       	ldi	r18, 0x2B	; 43
+ 380:	30 e0       	ldi	r19, 0x00	; 0
+ 382:	f9 01       	movw	r30, r18
+ 384:	20 81       	ld	r18, Z
+ 386:	20 68       	ori	r18, 0x80	; 128
+ 388:	fc 01       	movw	r30, r24
+ 38a:	20 83       	st	Z, r18
+	PORTD &= ~(1<<PORTD7);
+ 38c:	8b e2       	ldi	r24, 0x2B	; 43
+ 38e:	90 e0       	ldi	r25, 0x00	; 0
+ 390:	2b e2       	ldi	r18, 0x2B	; 43
+ 392:	30 e0       	ldi	r19, 0x00	; 0
+ 394:	f9 01       	movw	r30, r18
+ 396:	20 81       	ld	r18, Z
+ 398:	2f 77       	andi	r18, 0x7F	; 127
+ 39a:	fc 01       	movw	r30, r24
+ 39c:	20 83       	st	Z, r18
 }
- 308:	0f 90       	pop	r0
- 30a:	0f 90       	pop	r0
- 30c:	cf 91       	pop	r28
- 30e:	df 91       	pop	r29
- 310:	08 95       	ret
+ 39e:	0f 90       	pop	r0
+ 3a0:	0f 90       	pop	r0
+ 3a2:	cf 91       	pop	r28
+ 3a4:	df 91       	pop	r29
+ 3a6:	08 95       	ret
 
-00000312 <test>:
-
-void test()
-{
- 312:	df 93       	push	r29
- 314:	cf 93       	push	r28
- 316:	cd b7       	in	r28, 0x3d	; 61
- 318:	de b7       	in	r29, 0x3e	; 62
- 31a:	27 97       	sbiw	r28, 0x07	; 7
- 31c:	0f b6       	in	r0, 0x3f	; 63
- 31e:	f8 94       	cli
- 320:	de bf       	out	0x3e, r29	; 62
- 322:	0f be       	out	0x3f, r0	; 63
- 324:	cd bf       	out	0x3d, r28	; 61
-	int16_t pause;
-	uint8_t frame[4];
-	int8_t i;
-
-	for(;;)
-	for(i=0;i<8;i++)
- 326:	1b 82       	std	Y+3, r1	; 0x03
- 328:	35 c0       	rjmp	.+106    	; 0x394 <test+0x82>
-	{
-		frame[0]=1<<i;
- 32a:	8b 81       	ldd	r24, Y+3	; 0x03
- 32c:	28 2f       	mov	r18, r24
- 32e:	33 27       	eor	r19, r19
- 330:	27 fd       	sbrc	r18, 7
- 332:	30 95       	com	r19
- 334:	81 e0       	ldi	r24, 0x01	; 1
- 336:	90 e0       	ldi	r25, 0x00	; 0
- 338:	02 c0       	rjmp	.+4      	; 0x33e <test+0x2c>
- 33a:	88 0f       	add	r24, r24
- 33c:	99 1f       	adc	r25, r25
- 33e:	2a 95       	dec	r18
- 340:	e2 f7       	brpl	.-8      	; 0x33a <test+0x28>
- 342:	8c 83       	std	Y+4, r24	; 0x04
-		frame[1]=1<<(7-i);
- 344:	8b 81       	ldd	r24, Y+3	; 0x03
- 346:	99 27       	eor	r25, r25
- 348:	87 fd       	sbrc	r24, 7
- 34a:	90 95       	com	r25
- 34c:	27 e0       	ldi	r18, 0x07	; 7
- 34e:	30 e0       	ldi	r19, 0x00	; 0
- 350:	28 1b       	sub	r18, r24
- 352:	39 0b       	sbc	r19, r25
- 354:	81 e0       	ldi	r24, 0x01	; 1
- 356:	90 e0       	ldi	r25, 0x00	; 0
- 358:	02 c0       	rjmp	.+4      	; 0x35e <test+0x4c>
- 35a:	88 0f       	add	r24, r24
- 35c:	99 1f       	adc	r25, r25
- 35e:	2a 95       	dec	r18
- 360:	e2 f7       	brpl	.-8      	; 0x35a <test+0x48>
- 362:	8d 83       	std	Y+5, r24	; 0x05
-		frame[2]=frame[0];
- 364:	8c 81       	ldd	r24, Y+4	; 0x04
- 366:	8e 83       	std	Y+6, r24	; 0x06
-		frame[3]=frame[1];
- 368:	8d 81       	ldd	r24, Y+5	; 0x05
- 36a:	8f 83       	std	Y+7, r24	; 0x07
-		write_leds(frame);
- 36c:	ce 01       	movw	r24, r28
- 36e:	04 96       	adiw	r24, 0x04	; 4
- 370:	70 df       	rcall	.-288    	; 0x252 <write_leds>
-		for(pause=0;pause<10000;pause++);
- 372:	1a 82       	std	Y+2, r1	; 0x02
- 374:	19 82       	std	Y+1, r1	; 0x01
- 376:	05 c0       	rjmp	.+10     	; 0x382 <test+0x70>
- 378:	89 81       	ldd	r24, Y+1	; 0x01
- 37a:	9a 81       	ldd	r25, Y+2	; 0x02
- 37c:	01 96       	adiw	r24, 0x01	; 1
- 37e:	9a 83       	std	Y+2, r25	; 0x02
- 380:	89 83       	std	Y+1, r24	; 0x01
- 382:	89 81       	ldd	r24, Y+1	; 0x01
- 384:	9a 81       	ldd	r25, Y+2	; 0x02
- 386:	27 e2       	ldi	r18, 0x27	; 39
- 388:	80 31       	cpi	r24, 0x10	; 16
- 38a:	92 07       	cpc	r25, r18
- 38c:	ac f3       	brlt	.-22     	; 0x378 <test+0x66>
-	int16_t pause;
-	uint8_t frame[4];
-	int8_t i;
-
-	for(;;)
-	for(i=0;i<8;i++)
- 38e:	8b 81       	ldd	r24, Y+3	; 0x03
- 390:	8f 5f       	subi	r24, 0xFF	; 255
- 392:	8b 83       	std	Y+3, r24	; 0x03
- 394:	8b 81       	ldd	r24, Y+3	; 0x03
- 396:	88 30       	cpi	r24, 0x08	; 8
- 398:	44 f2       	brlt	.-112    	; 0x32a <test+0x18>
-		frame[1]=1<<(7-i);
-		frame[2]=frame[0];
-		frame[3]=frame[1];
-		write_leds(frame);
-		for(pause=0;pause<10000;pause++);
-	}
- 39a:	c5 cf       	rjmp	.-118    	; 0x326 <test+0x14>
-
-0000039c <i2c_start>:
-}
+000003a8 <i2c_start>:
 
 void i2c_start()
 {
- 39c:	df 93       	push	r29
- 39e:	cf 93       	push	r28
- 3a0:	cd b7       	in	r28, 0x3d	; 61
- 3a2:	de b7       	in	r29, 0x3e	; 62
+ 3a8:	df 93       	push	r29
+ 3aa:	cf 93       	push	r28
+ 3ac:	cd b7       	in	r28, 0x3d	; 61
+ 3ae:	de b7       	in	r29, 0x3e	; 62
 	TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN); // send I2C start condition
- 3a4:	8c eb       	ldi	r24, 0xBC	; 188
- 3a6:	90 e0       	ldi	r25, 0x00	; 0
- 3a8:	24 ea       	ldi	r18, 0xA4	; 164
- 3aa:	fc 01       	movw	r30, r24
- 3ac:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which says start cond. has been transmitted
- 3ae:	00 00       	nop
  3b0:	8c eb       	ldi	r24, 0xBC	; 188
  3b2:	90 e0       	ldi	r25, 0x00	; 0
- 3b4:	fc 01       	movw	r30, r24
- 3b6:	80 81       	ld	r24, Z
- 3b8:	88 23       	and	r24, r24
- 3ba:	d4 f7       	brge	.-12     	; 0x3b0 <i2c_start+0x14>
-	if ((TWSR & 0xF8) != 0x08) { // 0x08 = start
- 3bc:	89 eb       	ldi	r24, 0xB9	; 185
+ 3b4:	24 ea       	ldi	r18, 0xA4	; 164
+ 3b6:	fc 01       	movw	r30, r24
+ 3b8:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which says start cond. has been transmitted
+ 3ba:	00 00       	nop
+ 3bc:	8c eb       	ldi	r24, 0xBC	; 188
  3be:	90 e0       	ldi	r25, 0x00	; 0
  3c0:	fc 01       	movw	r30, r24
  3c2:	80 81       	ld	r24, Z
- 3c4:	88 2f       	mov	r24, r24
- 3c6:	90 e0       	ldi	r25, 0x00	; 0
- 3c8:	88 7f       	andi	r24, 0xF8	; 248
- 3ca:	90 70       	andi	r25, 0x00	; 0
- 3cc:	88 30       	cpi	r24, 0x08	; 8
- 3ce:	91 05       	cpc	r25, r1
- 3d0:	29 f0       	breq	.+10     	; 0x3dc <i2c_start+0x40>
+ 3c4:	88 23       	and	r24, r24
+ 3c6:	d4 f7       	brge	.-12     	; 0x3bc <i2c_start+0x14>
+	if ((TWSR & 0xF8) != 0x08) { // 0x08 = start
+ 3c8:	89 eb       	ldi	r24, 0xB9	; 185
+ 3ca:	90 e0       	ldi	r25, 0x00	; 0
+ 3cc:	fc 01       	movw	r30, r24
+ 3ce:	80 81       	ld	r24, Z
+ 3d0:	88 2f       	mov	r24, r24
+ 3d2:	90 e0       	ldi	r25, 0x00	; 0
+ 3d4:	88 7f       	andi	r24, 0xF8	; 248
+ 3d6:	90 70       	andi	r25, 0x00	; 0
+ 3d8:	88 30       	cpi	r24, 0x08	; 8
+ 3da:	91 05       	cpc	r25, r1
+ 3dc:	29 f0       	breq	.+10     	; 0x3e8 <i2c_start+0x40>
 		error(TWSR); // return status as error
- 3d2:	89 eb       	ldi	r24, 0xB9	; 185
- 3d4:	90 e0       	ldi	r25, 0x00	; 0
- 3d6:	fc 01       	movw	r30, r24
- 3d8:	80 81       	ld	r24, Z
- 3da:	69 d1       	rcall	.+722    	; 0x6ae <error>
+ 3de:	89 eb       	ldi	r24, 0xB9	; 185
+ 3e0:	90 e0       	ldi	r25, 0x00	; 0
+ 3e2:	fc 01       	movw	r30, r24
+ 3e4:	80 81       	ld	r24, Z
+ 3e6:	69 d1       	rcall	.+722    	; 0x6ba <error>
 	}
 }
- 3dc:	cf 91       	pop	r28
- 3de:	df 91       	pop	r29
- 3e0:	08 95       	ret
+ 3e8:	cf 91       	pop	r28
+ 3ea:	df 91       	pop	r29
+ 3ec:	08 95       	ret
 
-000003e2 <i2c_repeated_start>:
+000003ee <i2c_repeated_start>:
 
 void i2c_repeated_start()
 {
- 3e2:	df 93       	push	r29
- 3e4:	cf 93       	push	r28
- 3e6:	cd b7       	in	r28, 0x3d	; 61
- 3e8:	de b7       	in	r29, 0x3e	; 62
+ 3ee:	df 93       	push	r29
+ 3f0:	cf 93       	push	r28
+ 3f2:	cd b7       	in	r28, 0x3d	; 61
+ 3f4:	de b7       	in	r29, 0x3e	; 62
 	TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN); // send I2C start condition
- 3ea:	8c eb       	ldi	r24, 0xBC	; 188
- 3ec:	90 e0       	ldi	r25, 0x00	; 0
- 3ee:	24 ea       	ldi	r18, 0xA4	; 164
- 3f0:	fc 01       	movw	r30, r24
- 3f2:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which says start cond. has been transmitted
- 3f4:	00 00       	nop
  3f6:	8c eb       	ldi	r24, 0xBC	; 188
  3f8:	90 e0       	ldi	r25, 0x00	; 0
- 3fa:	fc 01       	movw	r30, r24
- 3fc:	80 81       	ld	r24, Z
- 3fe:	88 23       	and	r24, r24
- 400:	d4 f7       	brge	.-12     	; 0x3f6 <i2c_repeated_start+0x14>
-	if ((TWSR & 0xF8) != 0x10) { // 0x10 = repeated start sent
- 402:	89 eb       	ldi	r24, 0xB9	; 185
+ 3fa:	24 ea       	ldi	r18, 0xA4	; 164
+ 3fc:	fc 01       	movw	r30, r24
+ 3fe:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which says start cond. has been transmitted
+ 400:	00 00       	nop
+ 402:	8c eb       	ldi	r24, 0xBC	; 188
  404:	90 e0       	ldi	r25, 0x00	; 0
  406:	fc 01       	movw	r30, r24
  408:	80 81       	ld	r24, Z
- 40a:	88 2f       	mov	r24, r24
- 40c:	90 e0       	ldi	r25, 0x00	; 0
- 40e:	88 7f       	andi	r24, 0xF8	; 248
- 410:	90 70       	andi	r25, 0x00	; 0
- 412:	80 31       	cpi	r24, 0x10	; 16
- 414:	91 05       	cpc	r25, r1
- 416:	29 f0       	breq	.+10     	; 0x422 <i2c_repeated_start+0x40>
+ 40a:	88 23       	and	r24, r24
+ 40c:	d4 f7       	brge	.-12     	; 0x402 <i2c_repeated_start+0x14>
+	if ((TWSR & 0xF8) != 0x10) { // 0x10 = repeated start sent
+ 40e:	89 eb       	ldi	r24, 0xB9	; 185
+ 410:	90 e0       	ldi	r25, 0x00	; 0
+ 412:	fc 01       	movw	r30, r24
+ 414:	80 81       	ld	r24, Z
+ 416:	88 2f       	mov	r24, r24
+ 418:	90 e0       	ldi	r25, 0x00	; 0
+ 41a:	88 7f       	andi	r24, 0xF8	; 248
+ 41c:	90 70       	andi	r25, 0x00	; 0
+ 41e:	80 31       	cpi	r24, 0x10	; 16
+ 420:	91 05       	cpc	r25, r1
+ 422:	29 f0       	breq	.+10     	; 0x42e <i2c_repeated_start+0x40>
 		error(TWSR); // return status as error
- 418:	89 eb       	ldi	r24, 0xB9	; 185
- 41a:	90 e0       	ldi	r25, 0x00	; 0
- 41c:	fc 01       	movw	r30, r24
- 41e:	80 81       	ld	r24, Z
- 420:	46 d1       	rcall	.+652    	; 0x6ae <error>
+ 424:	89 eb       	ldi	r24, 0xB9	; 185
+ 426:	90 e0       	ldi	r25, 0x00	; 0
+ 428:	fc 01       	movw	r30, r24
+ 42a:	80 81       	ld	r24, Z
+ 42c:	46 d1       	rcall	.+652    	; 0x6ba <error>
 	}
 }
- 422:	cf 91       	pop	r28
- 424:	df 91       	pop	r29
- 426:	08 95       	ret
+ 42e:	cf 91       	pop	r28
+ 430:	df 91       	pop	r29
+ 432:	08 95       	ret
 
-00000428 <i2c_begin_write>:
+00000434 <i2c_begin_write>:
 
 void i2c_begin_write(uint8_t addr)
 {
- 428:	df 93       	push	r29
- 42a:	cf 93       	push	r28
- 42c:	0f 92       	push	r0
- 42e:	cd b7       	in	r28, 0x3d	; 61
- 430:	de b7       	in	r29, 0x3e	; 62
- 432:	89 83       	std	Y+1, r24	; 0x01
+ 434:	df 93       	push	r29
+ 436:	cf 93       	push	r28
+ 438:	0f 92       	push	r0
+ 43a:	cd b7       	in	r28, 0x3d	; 61
+ 43c:	de b7       	in	r29, 0x3e	; 62
+ 43e:	89 83       	std	Y+1, r24	; 0x01
 	TWDR = addr; // Write to addr
- 434:	8b eb       	ldi	r24, 0xBB	; 187
- 436:	90 e0       	ldi	r25, 0x00	; 0
- 438:	29 81       	ldd	r18, Y+1	; 0x01
- 43a:	fc 01       	movw	r30, r24
- 43c:	20 83       	st	Z, r18
+ 440:	8b eb       	ldi	r24, 0xBB	; 187
+ 442:	90 e0       	ldi	r25, 0x00	; 0
+ 444:	29 81       	ldd	r18, Y+1	; 0x01
+ 446:	fc 01       	movw	r30, r24
+ 448:	20 83       	st	Z, r18
 	TWCR = (1 << TWINT) | (1 << TWEN); // clear TWINT to start transmission
- 43e:	8c eb       	ldi	r24, 0xBC	; 188
- 440:	90 e0       	ldi	r25, 0x00	; 0
- 442:	24 e8       	ldi	r18, 0x84	; 132
- 444:	fc 01       	movw	r30, r24
- 446:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates ACK received
- 448:	00 00       	nop
  44a:	8c eb       	ldi	r24, 0xBC	; 188
  44c:	90 e0       	ldi	r25, 0x00	; 0
- 44e:	fc 01       	movw	r30, r24
- 450:	80 81       	ld	r24, Z
- 452:	88 23       	and	r24, r24
- 454:	d4 f7       	brge	.-12     	; 0x44a <i2c_begin_write+0x22>
-	if ((TWSR & 0xF8) != 0x18) { // 0x18 = SLA+W sent, ACK received
- 456:	89 eb       	ldi	r24, 0xB9	; 185
+ 44e:	24 e8       	ldi	r18, 0x84	; 132
+ 450:	fc 01       	movw	r30, r24
+ 452:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates ACK received
+ 454:	00 00       	nop
+ 456:	8c eb       	ldi	r24, 0xBC	; 188
  458:	90 e0       	ldi	r25, 0x00	; 0
  45a:	fc 01       	movw	r30, r24
  45c:	80 81       	ld	r24, Z
- 45e:	88 2f       	mov	r24, r24
- 460:	90 e0       	ldi	r25, 0x00	; 0
- 462:	88 7f       	andi	r24, 0xF8	; 248
- 464:	90 70       	andi	r25, 0x00	; 0
- 466:	88 31       	cpi	r24, 0x18	; 24
- 468:	91 05       	cpc	r25, r1
- 46a:	29 f0       	breq	.+10     	; 0x476 <i2c_begin_write+0x4e>
+ 45e:	88 23       	and	r24, r24
+ 460:	d4 f7       	brge	.-12     	; 0x456 <i2c_begin_write+0x22>
+	if ((TWSR & 0xF8) != 0x18) { // 0x18 = SLA+W sent, ACK received
+ 462:	89 eb       	ldi	r24, 0xB9	; 185
+ 464:	90 e0       	ldi	r25, 0x00	; 0
+ 466:	fc 01       	movw	r30, r24
+ 468:	80 81       	ld	r24, Z
+ 46a:	88 2f       	mov	r24, r24
+ 46c:	90 e0       	ldi	r25, 0x00	; 0
+ 46e:	88 7f       	andi	r24, 0xF8	; 248
+ 470:	90 70       	andi	r25, 0x00	; 0
+ 472:	88 31       	cpi	r24, 0x18	; 24
+ 474:	91 05       	cpc	r25, r1
+ 476:	29 f0       	breq	.+10     	; 0x482 <i2c_begin_write+0x4e>
 		error(TWSR); // return status as error
- 46c:	89 eb       	ldi	r24, 0xB9	; 185
- 46e:	90 e0       	ldi	r25, 0x00	; 0
- 470:	fc 01       	movw	r30, r24
- 472:	80 81       	ld	r24, Z
- 474:	1c d1       	rcall	.+568    	; 0x6ae <error>
+ 478:	89 eb       	ldi	r24, 0xB9	; 185
+ 47a:	90 e0       	ldi	r25, 0x00	; 0
+ 47c:	fc 01       	movw	r30, r24
+ 47e:	80 81       	ld	r24, Z
+ 480:	1c d1       	rcall	.+568    	; 0x6ba <error>
 	}
 }
- 476:	0f 90       	pop	r0
- 478:	cf 91       	pop	r28
- 47a:	df 91       	pop	r29
- 47c:	08 95       	ret
+ 482:	0f 90       	pop	r0
+ 484:	cf 91       	pop	r28
+ 486:	df 91       	pop	r29
+ 488:	08 95       	ret
 
-0000047e <i2c_begin_read>:
+0000048a <i2c_begin_read>:
 
 void i2c_begin_read(uint8_t addr)
 {
- 47e:	df 93       	push	r29
- 480:	cf 93       	push	r28
- 482:	0f 92       	push	r0
- 484:	cd b7       	in	r28, 0x3d	; 61
- 486:	de b7       	in	r29, 0x3e	; 62
- 488:	89 83       	std	Y+1, r24	; 0x01
+ 48a:	df 93       	push	r29
+ 48c:	cf 93       	push	r28
+ 48e:	0f 92       	push	r0
+ 490:	cd b7       	in	r28, 0x3d	; 61
+ 492:	de b7       	in	r29, 0x3e	; 62
+ 494:	89 83       	std	Y+1, r24	; 0x01
 	TWDR = addr | 1; // Read from addr
- 48a:	8b eb       	ldi	r24, 0xBB	; 187
- 48c:	90 e0       	ldi	r25, 0x00	; 0
- 48e:	29 81       	ldd	r18, Y+1	; 0x01
- 490:	21 60       	ori	r18, 0x01	; 1
- 492:	fc 01       	movw	r30, r24
- 494:	20 83       	st	Z, r18
-	TWCR = (1 << TWINT) | (1 << TWEN); // clear TWINT to start transmission
- 496:	8c eb       	ldi	r24, 0xBC	; 188
+ 496:	8b eb       	ldi	r24, 0xBB	; 187
  498:	90 e0       	ldi	r25, 0x00	; 0
- 49a:	24 e8       	ldi	r18, 0x84	; 132
- 49c:	fc 01       	movw	r30, r24
- 49e:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates ACK received
- 4a0:	00 00       	nop
+ 49a:	29 81       	ldd	r18, Y+1	; 0x01
+ 49c:	21 60       	ori	r18, 0x01	; 1
+ 49e:	fc 01       	movw	r30, r24
+ 4a0:	20 83       	st	Z, r18
+	TWCR = (1 << TWINT) | (1 << TWEN); // clear TWINT to start transmission
  4a2:	8c eb       	ldi	r24, 0xBC	; 188
  4a4:	90 e0       	ldi	r25, 0x00	; 0
- 4a6:	fc 01       	movw	r30, r24
- 4a8:	80 81       	ld	r24, Z
- 4aa:	88 23       	and	r24, r24
- 4ac:	d4 f7       	brge	.-12     	; 0x4a2 <i2c_begin_read+0x24>
-	if ((TWSR & 0xF8) != 0x40) { // 0x40 = SLA+R sent, ACK received
- 4ae:	89 eb       	ldi	r24, 0xB9	; 185
+ 4a6:	24 e8       	ldi	r18, 0x84	; 132
+ 4a8:	fc 01       	movw	r30, r24
+ 4aa:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates ACK received
+ 4ac:	00 00       	nop
+ 4ae:	8c eb       	ldi	r24, 0xBC	; 188
  4b0:	90 e0       	ldi	r25, 0x00	; 0
  4b2:	fc 01       	movw	r30, r24
  4b4:	80 81       	ld	r24, Z
- 4b6:	88 2f       	mov	r24, r24
- 4b8:	90 e0       	ldi	r25, 0x00	; 0
- 4ba:	88 7f       	andi	r24, 0xF8	; 248
- 4bc:	90 70       	andi	r25, 0x00	; 0
- 4be:	80 34       	cpi	r24, 0x40	; 64
- 4c0:	91 05       	cpc	r25, r1
- 4c2:	29 f0       	breq	.+10     	; 0x4ce <i2c_begin_read+0x50>
+ 4b6:	88 23       	and	r24, r24
+ 4b8:	d4 f7       	brge	.-12     	; 0x4ae <i2c_begin_read+0x24>
+	if ((TWSR & 0xF8) != 0x40) { // 0x40 = SLA+R sent, ACK received
+ 4ba:	89 eb       	ldi	r24, 0xB9	; 185
+ 4bc:	90 e0       	ldi	r25, 0x00	; 0
+ 4be:	fc 01       	movw	r30, r24
+ 4c0:	80 81       	ld	r24, Z
+ 4c2:	88 2f       	mov	r24, r24
+ 4c4:	90 e0       	ldi	r25, 0x00	; 0
+ 4c6:	88 7f       	andi	r24, 0xF8	; 248
+ 4c8:	90 70       	andi	r25, 0x00	; 0
+ 4ca:	80 34       	cpi	r24, 0x40	; 64
+ 4cc:	91 05       	cpc	r25, r1
+ 4ce:	29 f0       	breq	.+10     	; 0x4da <i2c_begin_read+0x50>
 		error(TWSR); // return status as error
- 4c4:	89 eb       	ldi	r24, 0xB9	; 185
- 4c6:	90 e0       	ldi	r25, 0x00	; 0
- 4c8:	fc 01       	movw	r30, r24
- 4ca:	80 81       	ld	r24, Z
- 4cc:	f0 d0       	rcall	.+480    	; 0x6ae <error>
+ 4d0:	89 eb       	ldi	r24, 0xB9	; 185
+ 4d2:	90 e0       	ldi	r25, 0x00	; 0
+ 4d4:	fc 01       	movw	r30, r24
+ 4d6:	80 81       	ld	r24, Z
+ 4d8:	f0 d0       	rcall	.+480    	; 0x6ba <error>
 	}
 }
- 4ce:	0f 90       	pop	r0
- 4d0:	cf 91       	pop	r28
- 4d2:	df 91       	pop	r29
- 4d4:	08 95       	ret
+ 4da:	0f 90       	pop	r0
+ 4dc:	cf 91       	pop	r28
+ 4de:	df 91       	pop	r29
+ 4e0:	08 95       	ret
 
-000004d6 <i2c_write>:
+000004e2 <i2c_write>:
 
 void i2c_write(uint8_t data)
 {
- 4d6:	df 93       	push	r29
- 4d8:	cf 93       	push	r28
- 4da:	0f 92       	push	r0
- 4dc:	cd b7       	in	r28, 0x3d	; 61
- 4de:	de b7       	in	r29, 0x3e	; 62
- 4e0:	89 83       	std	Y+1, r24	; 0x01
+ 4e2:	df 93       	push	r29
+ 4e4:	cf 93       	push	r28
+ 4e6:	0f 92       	push	r0
+ 4e8:	cd b7       	in	r28, 0x3d	; 61
+ 4ea:	de b7       	in	r29, 0x3e	; 62
+ 4ec:	89 83       	std	Y+1, r24	; 0x01
 	TWDR = data; // Output data
- 4e2:	8b eb       	ldi	r24, 0xBB	; 187
- 4e4:	90 e0       	ldi	r25, 0x00	; 0
- 4e6:	29 81       	ldd	r18, Y+1	; 0x01
- 4e8:	fc 01       	movw	r30, r24
- 4ea:	20 83       	st	Z, r18
+ 4ee:	8b eb       	ldi	r24, 0xBB	; 187
+ 4f0:	90 e0       	ldi	r25, 0x00	; 0
+ 4f2:	29 81       	ldd	r18, Y+1	; 0x01
+ 4f4:	fc 01       	movw	r30, r24
+ 4f6:	20 83       	st	Z, r18
 	TWCR = (1 << TWINT) | (1 << TWEN); // clear TWINT to start transmission
- 4ec:	8c eb       	ldi	r24, 0xBC	; 188
- 4ee:	90 e0       	ldi	r25, 0x00	; 0
- 4f0:	24 e8       	ldi	r18, 0x84	; 132
- 4f2:	fc 01       	movw	r30, r24
- 4f4:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates ACK received
- 4f6:	00 00       	nop
  4f8:	8c eb       	ldi	r24, 0xBC	; 188
  4fa:	90 e0       	ldi	r25, 0x00	; 0
- 4fc:	fc 01       	movw	r30, r24
- 4fe:	80 81       	ld	r24, Z
- 500:	88 23       	and	r24, r24
- 502:	d4 f7       	brge	.-12     	; 0x4f8 <i2c_write+0x22>
-	if ((TWSR & 0xF8) != 0x28) { // 0x28 = Data byte sent, ACK received
- 504:	89 eb       	ldi	r24, 0xB9	; 185
+ 4fc:	24 e8       	ldi	r18, 0x84	; 132
+ 4fe:	fc 01       	movw	r30, r24
+ 500:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates ACK received
+ 502:	00 00       	nop
+ 504:	8c eb       	ldi	r24, 0xBC	; 188
  506:	90 e0       	ldi	r25, 0x00	; 0
  508:	fc 01       	movw	r30, r24
  50a:	80 81       	ld	r24, Z
- 50c:	88 2f       	mov	r24, r24
- 50e:	90 e0       	ldi	r25, 0x00	; 0
- 510:	88 7f       	andi	r24, 0xF8	; 248
- 512:	90 70       	andi	r25, 0x00	; 0
- 514:	88 32       	cpi	r24, 0x28	; 40
- 516:	91 05       	cpc	r25, r1
- 518:	29 f0       	breq	.+10     	; 0x524 <i2c_write+0x4e>
+ 50c:	88 23       	and	r24, r24
+ 50e:	d4 f7       	brge	.-12     	; 0x504 <i2c_write+0x22>
+	if ((TWSR & 0xF8) != 0x28) { // 0x28 = Data byte sent, ACK received
+ 510:	89 eb       	ldi	r24, 0xB9	; 185
+ 512:	90 e0       	ldi	r25, 0x00	; 0
+ 514:	fc 01       	movw	r30, r24
+ 516:	80 81       	ld	r24, Z
+ 518:	88 2f       	mov	r24, r24
+ 51a:	90 e0       	ldi	r25, 0x00	; 0
+ 51c:	88 7f       	andi	r24, 0xF8	; 248
+ 51e:	90 70       	andi	r25, 0x00	; 0
+ 520:	88 32       	cpi	r24, 0x28	; 40
+ 522:	91 05       	cpc	r25, r1
+ 524:	29 f0       	breq	.+10     	; 0x530 <i2c_write+0x4e>
 		error(TWSR); // return status as error
- 51a:	89 eb       	ldi	r24, 0xB9	; 185
- 51c:	90 e0       	ldi	r25, 0x00	; 0
- 51e:	fc 01       	movw	r30, r24
- 520:	80 81       	ld	r24, Z
- 522:	c5 d0       	rcall	.+394    	; 0x6ae <error>
+ 526:	89 eb       	ldi	r24, 0xB9	; 185
+ 528:	90 e0       	ldi	r25, 0x00	; 0
+ 52a:	fc 01       	movw	r30, r24
+ 52c:	80 81       	ld	r24, Z
+ 52e:	c5 d0       	rcall	.+394    	; 0x6ba <error>
 	}
 }
- 524:	0f 90       	pop	r0
- 526:	cf 91       	pop	r28
- 528:	df 91       	pop	r29
- 52a:	08 95       	ret
+ 530:	0f 90       	pop	r0
+ 532:	cf 91       	pop	r28
+ 534:	df 91       	pop	r29
+ 536:	08 95       	ret
 
-0000052c <i2c_read_ack>:
+00000538 <i2c_read_ack>:
 
 void i2c_read_ack(uint8_t* data)
 {
- 52c:	df 93       	push	r29
- 52e:	cf 93       	push	r28
- 530:	00 d0       	rcall	.+0      	; 0x532 <i2c_read_ack+0x6>
- 532:	cd b7       	in	r28, 0x3d	; 61
- 534:	de b7       	in	r29, 0x3e	; 62
- 536:	9a 83       	std	Y+2, r25	; 0x02
- 538:	89 83       	std	Y+1, r24	; 0x01
+ 538:	df 93       	push	r29
+ 53a:	cf 93       	push	r28
+ 53c:	00 d0       	rcall	.+0      	; 0x53e <i2c_read_ack+0x6>
+ 53e:	cd b7       	in	r28, 0x3d	; 61
+ 540:	de b7       	in	r29, 0x3e	; 62
+ 542:	9a 83       	std	Y+2, r25	; 0x02
+ 544:	89 83       	std	Y+1, r24	; 0x01
 	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA); // clear TWINT to start transmission
- 53a:	8c eb       	ldi	r24, 0xBC	; 188
- 53c:	90 e0       	ldi	r25, 0x00	; 0
- 53e:	24 ec       	ldi	r18, 0xC4	; 196
- 540:	fc 01       	movw	r30, r24
- 542:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates byte received
- 544:	00 00       	nop
  546:	8c eb       	ldi	r24, 0xBC	; 188
  548:	90 e0       	ldi	r25, 0x00	; 0
- 54a:	fc 01       	movw	r30, r24
- 54c:	80 81       	ld	r24, Z
- 54e:	88 23       	and	r24, r24
- 550:	d4 f7       	brge	.-12     	; 0x546 <i2c_read_ack+0x1a>
-	if ((TWSR & 0xF8) != 0x50) { // 0x50 = Data byte sent, ACK received
- 552:	89 eb       	ldi	r24, 0xB9	; 185
+ 54a:	24 ec       	ldi	r18, 0xC4	; 196
+ 54c:	fc 01       	movw	r30, r24
+ 54e:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates byte received
+ 550:	00 00       	nop
+ 552:	8c eb       	ldi	r24, 0xBC	; 188
  554:	90 e0       	ldi	r25, 0x00	; 0
  556:	fc 01       	movw	r30, r24
  558:	80 81       	ld	r24, Z
- 55a:	88 2f       	mov	r24, r24
- 55c:	90 e0       	ldi	r25, 0x00	; 0
- 55e:	88 7f       	andi	r24, 0xF8	; 248
- 560:	90 70       	andi	r25, 0x00	; 0
- 562:	80 35       	cpi	r24, 0x50	; 80
- 564:	91 05       	cpc	r25, r1
- 566:	29 f0       	breq	.+10     	; 0x572 <i2c_read_ack+0x46>
+ 55a:	88 23       	and	r24, r24
+ 55c:	d4 f7       	brge	.-12     	; 0x552 <i2c_read_ack+0x1a>
+	if ((TWSR & 0xF8) != 0x50) { // 0x50 = Data byte sent, ACK received
+ 55e:	89 eb       	ldi	r24, 0xB9	; 185
+ 560:	90 e0       	ldi	r25, 0x00	; 0
+ 562:	fc 01       	movw	r30, r24
+ 564:	80 81       	ld	r24, Z
+ 566:	88 2f       	mov	r24, r24
+ 568:	90 e0       	ldi	r25, 0x00	; 0
+ 56a:	88 7f       	andi	r24, 0xF8	; 248
+ 56c:	90 70       	andi	r25, 0x00	; 0
+ 56e:	80 35       	cpi	r24, 0x50	; 80
+ 570:	91 05       	cpc	r25, r1
+ 572:	29 f0       	breq	.+10     	; 0x57e <i2c_read_ack+0x46>
 		error(TWSR); // return status as error
- 568:	89 eb       	ldi	r24, 0xB9	; 185
- 56a:	90 e0       	ldi	r25, 0x00	; 0
- 56c:	fc 01       	movw	r30, r24
- 56e:	80 81       	ld	r24, Z
- 570:	9e d0       	rcall	.+316    	; 0x6ae <error>
+ 574:	89 eb       	ldi	r24, 0xB9	; 185
+ 576:	90 e0       	ldi	r25, 0x00	; 0
+ 578:	fc 01       	movw	r30, r24
+ 57a:	80 81       	ld	r24, Z
+ 57c:	9e d0       	rcall	.+316    	; 0x6ba <error>
 	}
 	*data=TWDR;
- 572:	8b eb       	ldi	r24, 0xBB	; 187
- 574:	90 e0       	ldi	r25, 0x00	; 0
- 576:	fc 01       	movw	r30, r24
- 578:	20 81       	ld	r18, Z
- 57a:	89 81       	ldd	r24, Y+1	; 0x01
- 57c:	9a 81       	ldd	r25, Y+2	; 0x02
- 57e:	fc 01       	movw	r30, r24
- 580:	20 83       	st	Z, r18
+ 57e:	8b eb       	ldi	r24, 0xBB	; 187
+ 580:	90 e0       	ldi	r25, 0x00	; 0
+ 582:	fc 01       	movw	r30, r24
+ 584:	20 81       	ld	r18, Z
+ 586:	89 81       	ldd	r24, Y+1	; 0x01
+ 588:	9a 81       	ldd	r25, Y+2	; 0x02
+ 58a:	fc 01       	movw	r30, r24
+ 58c:	20 83       	st	Z, r18
 }
- 582:	0f 90       	pop	r0
- 584:	0f 90       	pop	r0
- 586:	cf 91       	pop	r28
- 588:	df 91       	pop	r29
- 58a:	08 95       	ret
+ 58e:	0f 90       	pop	r0
+ 590:	0f 90       	pop	r0
+ 592:	cf 91       	pop	r28
+ 594:	df 91       	pop	r29
+ 596:	08 95       	ret
 
-0000058c <i2c_read_nack>:
+00000598 <i2c_read_nack>:
 
 void i2c_read_nack(uint8_t* data)
 {
- 58c:	df 93       	push	r29
- 58e:	cf 93       	push	r28
- 590:	00 d0       	rcall	.+0      	; 0x592 <i2c_read_nack+0x6>
- 592:	cd b7       	in	r28, 0x3d	; 61
- 594:	de b7       	in	r29, 0x3e	; 62
- 596:	9a 83       	std	Y+2, r25	; 0x02
- 598:	89 83       	std	Y+1, r24	; 0x01
+ 598:	df 93       	push	r29
+ 59a:	cf 93       	push	r28
+ 59c:	00 d0       	rcall	.+0      	; 0x59e <i2c_read_nack+0x6>
+ 59e:	cd b7       	in	r28, 0x3d	; 61
+ 5a0:	de b7       	in	r29, 0x3e	; 62
+ 5a2:	9a 83       	std	Y+2, r25	; 0x02
+ 5a4:	89 83       	std	Y+1, r24	; 0x01
 	TWCR = (1 << TWINT) | (1 << TWEN); // clear TWINT to start transmission
- 59a:	8c eb       	ldi	r24, 0xBC	; 188
- 59c:	90 e0       	ldi	r25, 0x00	; 0
- 59e:	24 e8       	ldi	r18, 0x84	; 132
- 5a0:	fc 01       	movw	r30, r24
- 5a2:	20 83       	st	Z, r18
-	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates byte received
- 5a4:	00 00       	nop
  5a6:	8c eb       	ldi	r24, 0xBC	; 188
  5a8:	90 e0       	ldi	r25, 0x00	; 0
- 5aa:	fc 01       	movw	r30, r24
- 5ac:	80 81       	ld	r24, Z
- 5ae:	88 23       	and	r24, r24
- 5b0:	d4 f7       	brge	.-12     	; 0x5a6 <i2c_read_nack+0x1a>
-	if ((TWSR & 0xF8) != 0x58) { // 0x58 = Data byte sent, NACK received
- 5b2:	89 eb       	ldi	r24, 0xB9	; 185
+ 5aa:	24 e8       	ldi	r18, 0x84	; 132
+ 5ac:	fc 01       	movw	r30, r24
+ 5ae:	20 83       	st	Z, r18
+	while (!(TWCR & (1 << TWINT))); // wait for TWINT flag which indicates byte received
+ 5b0:	00 00       	nop
+ 5b2:	8c eb       	ldi	r24, 0xBC	; 188
  5b4:	90 e0       	ldi	r25, 0x00	; 0
  5b6:	fc 01       	movw	r30, r24
  5b8:	80 81       	ld	r24, Z
- 5ba:	88 2f       	mov	r24, r24
- 5bc:	90 e0       	ldi	r25, 0x00	; 0
- 5be:	88 7f       	andi	r24, 0xF8	; 248
- 5c0:	90 70       	andi	r25, 0x00	; 0
- 5c2:	88 35       	cpi	r24, 0x58	; 88
- 5c4:	91 05       	cpc	r25, r1
- 5c6:	29 f0       	breq	.+10     	; 0x5d2 <i2c_read_nack+0x46>
+ 5ba:	88 23       	and	r24, r24
+ 5bc:	d4 f7       	brge	.-12     	; 0x5b2 <i2c_read_nack+0x1a>
+	if ((TWSR & 0xF8) != 0x58) { // 0x58 = Data byte sent, NACK received
+ 5be:	89 eb       	ldi	r24, 0xB9	; 185
+ 5c0:	90 e0       	ldi	r25, 0x00	; 0
+ 5c2:	fc 01       	movw	r30, r24
+ 5c4:	80 81       	ld	r24, Z
+ 5c6:	88 2f       	mov	r24, r24
+ 5c8:	90 e0       	ldi	r25, 0x00	; 0
+ 5ca:	88 7f       	andi	r24, 0xF8	; 248
+ 5cc:	90 70       	andi	r25, 0x00	; 0
+ 5ce:	88 35       	cpi	r24, 0x58	; 88
+ 5d0:	91 05       	cpc	r25, r1
+ 5d2:	29 f0       	breq	.+10     	; 0x5de <i2c_read_nack+0x46>
 		error(TWSR); // return status as error
- 5c8:	89 eb       	ldi	r24, 0xB9	; 185
- 5ca:	90 e0       	ldi	r25, 0x00	; 0
- 5cc:	fc 01       	movw	r30, r24
- 5ce:	80 81       	ld	r24, Z
- 5d0:	6e d0       	rcall	.+220    	; 0x6ae <error>
+ 5d4:	89 eb       	ldi	r24, 0xB9	; 185
+ 5d6:	90 e0       	ldi	r25, 0x00	; 0
+ 5d8:	fc 01       	movw	r30, r24
+ 5da:	80 81       	ld	r24, Z
+ 5dc:	6e d0       	rcall	.+220    	; 0x6ba <error>
 	}
 	*data=TWDR;
- 5d2:	8b eb       	ldi	r24, 0xBB	; 187
- 5d4:	90 e0       	ldi	r25, 0x00	; 0
- 5d6:	fc 01       	movw	r30, r24
- 5d8:	20 81       	ld	r18, Z
- 5da:	89 81       	ldd	r24, Y+1	; 0x01
- 5dc:	9a 81       	ldd	r25, Y+2	; 0x02
- 5de:	fc 01       	movw	r30, r24
- 5e0:	20 83       	st	Z, r18
+ 5de:	8b eb       	ldi	r24, 0xBB	; 187
+ 5e0:	90 e0       	ldi	r25, 0x00	; 0
+ 5e2:	fc 01       	movw	r30, r24
+ 5e4:	20 81       	ld	r18, Z
+ 5e6:	89 81       	ldd	r24, Y+1	; 0x01
+ 5e8:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5ea:	fc 01       	movw	r30, r24
+ 5ec:	20 83       	st	Z, r18
 }
- 5e2:	0f 90       	pop	r0
- 5e4:	0f 90       	pop	r0
- 5e6:	cf 91       	pop	r28
- 5e8:	df 91       	pop	r29
- 5ea:	08 95       	ret
+ 5ee:	0f 90       	pop	r0
+ 5f0:	0f 90       	pop	r0
+ 5f2:	cf 91       	pop	r28
+ 5f4:	df 91       	pop	r29
+ 5f6:	08 95       	ret
 
-000005ec <i2c_stop>:
+000005f8 <i2c_stop>:
 
 void i2c_stop()
 {
- 5ec:	df 93       	push	r29
- 5ee:	cf 93       	push	r28
- 5f0:	cd b7       	in	r28, 0x3d	; 61
- 5f2:	de b7       	in	r29, 0x3e	; 62
+ 5f8:	df 93       	push	r29
+ 5fa:	cf 93       	push	r28
+ 5fc:	cd b7       	in	r28, 0x3d	; 61
+ 5fe:	de b7       	in	r29, 0x3e	; 62
 	TWCR = (1 << TWINT) | (1 << TWSTO) | (1 << TWEN); // send I2C stop condition
- 5f4:	8c eb       	ldi	r24, 0xBC	; 188
- 5f6:	90 e0       	ldi	r25, 0x00	; 0
- 5f8:	24 e9       	ldi	r18, 0x94	; 148
- 5fa:	fc 01       	movw	r30, r24
- 5fc:	20 83       	st	Z, r18
+ 600:	8c eb       	ldi	r24, 0xBC	; 188
+ 602:	90 e0       	ldi	r25, 0x00	; 0
+ 604:	24 e9       	ldi	r18, 0x94	; 148
+ 606:	fc 01       	movw	r30, r24
+ 608:	20 83       	st	Z, r18
 }
- 5fe:	cf 91       	pop	r28
- 600:	df 91       	pop	r29
- 602:	08 95       	ret
+ 60a:	cf 91       	pop	r28
+ 60c:	df 91       	pop	r29
+ 60e:	08 95       	ret
 
-00000604 <accel_read_single>:
+00000610 <accel_read_single>:
 
+// Read a single byte from a register in the accelerometer
 void accel_read_single(uint8_t addr,uint8_t reg,uint8_t* datum)
 {
- 604:	df 93       	push	r29
- 606:	cf 93       	push	r28
- 608:	00 d0       	rcall	.+0      	; 0x60a <accel_read_single+0x6>
- 60a:	00 d0       	rcall	.+0      	; 0x60c <accel_read_single+0x8>
- 60c:	cd b7       	in	r28, 0x3d	; 61
- 60e:	de b7       	in	r29, 0x3e	; 62
- 610:	89 83       	std	Y+1, r24	; 0x01
- 612:	6a 83       	std	Y+2, r22	; 0x02
- 614:	5c 83       	std	Y+4, r21	; 0x04
- 616:	4b 83       	std	Y+3, r20	; 0x03
+ 610:	df 93       	push	r29
+ 612:	cf 93       	push	r28
+ 614:	00 d0       	rcall	.+0      	; 0x616 <accel_read_single+0x6>
+ 616:	00 d0       	rcall	.+0      	; 0x618 <accel_read_single+0x8>
+ 618:	cd b7       	in	r28, 0x3d	; 61
+ 61a:	de b7       	in	r29, 0x3e	; 62
+ 61c:	89 83       	std	Y+1, r24	; 0x01
+ 61e:	6a 83       	std	Y+2, r22	; 0x02
+ 620:	5c 83       	std	Y+4, r21	; 0x04
+ 622:	4b 83       	std	Y+3, r20	; 0x03
 	i2c_start();
- 618:	c1 de       	rcall	.-638    	; 0x39c <i2c_start>
+ 624:	c1 de       	rcall	.-638    	; 0x3a8 <i2c_start>
 	i2c_begin_write(addr);
- 61a:	89 81       	ldd	r24, Y+1	; 0x01
- 61c:	05 df       	rcall	.-502    	; 0x428 <i2c_begin_write>
+ 626:	89 81       	ldd	r24, Y+1	; 0x01
+ 628:	05 df       	rcall	.-502    	; 0x434 <i2c_begin_write>
 	i2c_write(reg);
- 61e:	8a 81       	ldd	r24, Y+2	; 0x02
- 620:	5a df       	rcall	.-332    	; 0x4d6 <i2c_write>
+ 62a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 62c:	5a df       	rcall	.-332    	; 0x4e2 <i2c_write>
 	i2c_repeated_start();
- 622:	df de       	rcall	.-578    	; 0x3e2 <i2c_repeated_start>
+ 62e:	df de       	rcall	.-578    	; 0x3ee <i2c_repeated_start>
 	i2c_begin_read(addr);
- 624:	89 81       	ldd	r24, Y+1	; 0x01
- 626:	2b df       	rcall	.-426    	; 0x47e <i2c_begin_read>
+ 630:	89 81       	ldd	r24, Y+1	; 0x01
+ 632:	2b df       	rcall	.-426    	; 0x48a <i2c_begin_read>
 	i2c_read_nack(datum);
- 628:	8b 81       	ldd	r24, Y+3	; 0x03
- 62a:	9c 81       	ldd	r25, Y+4	; 0x04
- 62c:	af df       	rcall	.-162    	; 0x58c <i2c_read_nack>
+ 634:	8b 81       	ldd	r24, Y+3	; 0x03
+ 636:	9c 81       	ldd	r25, Y+4	; 0x04
+ 638:	af df       	rcall	.-162    	; 0x598 <i2c_read_nack>
 	i2c_stop();
- 62e:	de df       	rcall	.-68     	; 0x5ec <i2c_stop>
+ 63a:	de df       	rcall	.-68     	; 0x5f8 <i2c_stop>
 }
- 630:	0f 90       	pop	r0
- 632:	0f 90       	pop	r0
- 634:	0f 90       	pop	r0
- 636:	0f 90       	pop	r0
- 638:	cf 91       	pop	r28
- 63a:	df 91       	pop	r29
- 63c:	08 95       	ret
+ 63c:	0f 90       	pop	r0
+ 63e:	0f 90       	pop	r0
+ 640:	0f 90       	pop	r0
+ 642:	0f 90       	pop	r0
+ 644:	cf 91       	pop	r28
+ 646:	df 91       	pop	r29
+ 648:	08 95       	ret
 
-0000063e <accel_read_double>:
+0000064a <accel_read_double>:
 
+// Read two bytes from a register pair in the accelerometer
 void accel_read_double(uint8_t addr,uint8_t reg,uint8_t* datum)
 {
- 63e:	df 93       	push	r29
- 640:	cf 93       	push	r28
- 642:	00 d0       	rcall	.+0      	; 0x644 <accel_read_double+0x6>
- 644:	00 d0       	rcall	.+0      	; 0x646 <accel_read_double+0x8>
- 646:	cd b7       	in	r28, 0x3d	; 61
- 648:	de b7       	in	r29, 0x3e	; 62
- 64a:	89 83       	std	Y+1, r24	; 0x01
- 64c:	6a 83       	std	Y+2, r22	; 0x02
- 64e:	5c 83       	std	Y+4, r21	; 0x04
- 650:	4b 83       	std	Y+3, r20	; 0x03
+ 64a:	df 93       	push	r29
+ 64c:	cf 93       	push	r28
+ 64e:	00 d0       	rcall	.+0      	; 0x650 <accel_read_double+0x6>
+ 650:	00 d0       	rcall	.+0      	; 0x652 <accel_read_double+0x8>
+ 652:	cd b7       	in	r28, 0x3d	; 61
+ 654:	de b7       	in	r29, 0x3e	; 62
+ 656:	89 83       	std	Y+1, r24	; 0x01
+ 658:	6a 83       	std	Y+2, r22	; 0x02
+ 65a:	5c 83       	std	Y+4, r21	; 0x04
+ 65c:	4b 83       	std	Y+3, r20	; 0x03
 	i2c_start();
- 652:	a4 de       	rcall	.-696    	; 0x39c <i2c_start>
+ 65e:	a4 de       	rcall	.-696    	; 0x3a8 <i2c_start>
 	i2c_begin_write(addr);
- 654:	89 81       	ldd	r24, Y+1	; 0x01
- 656:	e8 de       	rcall	.-560    	; 0x428 <i2c_begin_write>
+ 660:	89 81       	ldd	r24, Y+1	; 0x01
+ 662:	e8 de       	rcall	.-560    	; 0x434 <i2c_begin_write>
 	i2c_write(reg);
- 658:	8a 81       	ldd	r24, Y+2	; 0x02
- 65a:	3d df       	rcall	.-390    	; 0x4d6 <i2c_write>
+ 664:	8a 81       	ldd	r24, Y+2	; 0x02
+ 666:	3d df       	rcall	.-390    	; 0x4e2 <i2c_write>
 	i2c_repeated_start();
- 65c:	c2 de       	rcall	.-636    	; 0x3e2 <i2c_repeated_start>
+ 668:	c2 de       	rcall	.-636    	; 0x3ee <i2c_repeated_start>
 	i2c_begin_read(addr);
- 65e:	89 81       	ldd	r24, Y+1	; 0x01
- 660:	0e df       	rcall	.-484    	; 0x47e <i2c_begin_read>
+ 66a:	89 81       	ldd	r24, Y+1	; 0x01
+ 66c:	0e df       	rcall	.-484    	; 0x48a <i2c_begin_read>
 	i2c_read_ack(&datum[1]);
- 662:	8b 81       	ldd	r24, Y+3	; 0x03
- 664:	9c 81       	ldd	r25, Y+4	; 0x04
- 666:	01 96       	adiw	r24, 0x01	; 1
- 668:	61 df       	rcall	.-318    	; 0x52c <i2c_read_ack>
+ 66e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 670:	9c 81       	ldd	r25, Y+4	; 0x04
+ 672:	01 96       	adiw	r24, 0x01	; 1
+ 674:	61 df       	rcall	.-318    	; 0x538 <i2c_read_ack>
 	i2c_read_nack(&datum[0]);
- 66a:	8b 81       	ldd	r24, Y+3	; 0x03
- 66c:	9c 81       	ldd	r25, Y+4	; 0x04
- 66e:	8e df       	rcall	.-228    	; 0x58c <i2c_read_nack>
+ 676:	8b 81       	ldd	r24, Y+3	; 0x03
+ 678:	9c 81       	ldd	r25, Y+4	; 0x04
+ 67a:	8e df       	rcall	.-228    	; 0x598 <i2c_read_nack>
 	i2c_stop();
- 670:	bd df       	rcall	.-134    	; 0x5ec <i2c_stop>
+ 67c:	bd df       	rcall	.-134    	; 0x5f8 <i2c_stop>
 }
- 672:	0f 90       	pop	r0
- 674:	0f 90       	pop	r0
- 676:	0f 90       	pop	r0
- 678:	0f 90       	pop	r0
- 67a:	cf 91       	pop	r28
- 67c:	df 91       	pop	r29
- 67e:	08 95       	ret
+ 67e:	0f 90       	pop	r0
+ 680:	0f 90       	pop	r0
+ 682:	0f 90       	pop	r0
+ 684:	0f 90       	pop	r0
+ 686:	cf 91       	pop	r28
+ 688:	df 91       	pop	r29
+ 68a:	08 95       	ret
 
-00000680 <accel_write_single>:
+0000068c <accel_write_single>:
 
+// Write a single byte to a register in the accelerometer
 void accel_write_single(uint8_t addr,uint8_t reg,uint8_t datum)
 {
- 680:	df 93       	push	r29
- 682:	cf 93       	push	r28
- 684:	00 d0       	rcall	.+0      	; 0x686 <accel_write_single+0x6>
- 686:	0f 92       	push	r0
- 688:	cd b7       	in	r28, 0x3d	; 61
- 68a:	de b7       	in	r29, 0x3e	; 62
- 68c:	89 83       	std	Y+1, r24	; 0x01
- 68e:	6a 83       	std	Y+2, r22	; 0x02
- 690:	4b 83       	std	Y+3, r20	; 0x03
+ 68c:	df 93       	push	r29
+ 68e:	cf 93       	push	r28
+ 690:	00 d0       	rcall	.+0      	; 0x692 <accel_write_single+0x6>
+ 692:	0f 92       	push	r0
+ 694:	cd b7       	in	r28, 0x3d	; 61
+ 696:	de b7       	in	r29, 0x3e	; 62
+ 698:	89 83       	std	Y+1, r24	; 0x01
+ 69a:	6a 83       	std	Y+2, r22	; 0x02
+ 69c:	4b 83       	std	Y+3, r20	; 0x03
 	i2c_start();
- 692:	84 de       	rcall	.-760    	; 0x39c <i2c_start>
+ 69e:	84 de       	rcall	.-760    	; 0x3a8 <i2c_start>
 	i2c_begin_write(addr);
- 694:	89 81       	ldd	r24, Y+1	; 0x01
- 696:	c8 de       	rcall	.-624    	; 0x428 <i2c_begin_write>
+ 6a0:	89 81       	ldd	r24, Y+1	; 0x01
+ 6a2:	c8 de       	rcall	.-624    	; 0x434 <i2c_begin_write>
 	i2c_write(reg);
- 698:	8a 81       	ldd	r24, Y+2	; 0x02
- 69a:	1d df       	rcall	.-454    	; 0x4d6 <i2c_write>
+ 6a4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 6a6:	1d df       	rcall	.-454    	; 0x4e2 <i2c_write>
 	i2c_write(datum);
- 69c:	8b 81       	ldd	r24, Y+3	; 0x03
- 69e:	1b df       	rcall	.-458    	; 0x4d6 <i2c_write>
+ 6a8:	8b 81       	ldd	r24, Y+3	; 0x03
+ 6aa:	1b df       	rcall	.-458    	; 0x4e2 <i2c_write>
 	i2c_stop();
- 6a0:	a5 df       	rcall	.-182    	; 0x5ec <i2c_stop>
+ 6ac:	a5 df       	rcall	.-182    	; 0x5f8 <i2c_stop>
 }
- 6a2:	0f 90       	pop	r0
- 6a4:	0f 90       	pop	r0
- 6a6:	0f 90       	pop	r0
- 6a8:	cf 91       	pop	r28
- 6aa:	df 91       	pop	r29
- 6ac:	08 95       	ret
+ 6ae:	0f 90       	pop	r0
+ 6b0:	0f 90       	pop	r0
+ 6b2:	0f 90       	pop	r0
+ 6b4:	cf 91       	pop	r28
+ 6b6:	df 91       	pop	r29
+ 6b8:	08 95       	ret
 
-000006ae <error>:
+000006ba <error>:
 
-
+// Turn on red LEDs and wait forever
 void error(uint8_t code)
 {
- 6ae:	df 93       	push	r29
- 6b0:	cf 93       	push	r28
- 6b2:	00 d0       	rcall	.+0      	; 0x6b4 <error+0x6>
- 6b4:	00 d0       	rcall	.+0      	; 0x6b6 <error+0x8>
- 6b6:	0f 92       	push	r0
- 6b8:	cd b7       	in	r28, 0x3d	; 61
- 6ba:	de b7       	in	r29, 0x3e	; 62
- 6bc:	8d 83       	std	Y+5, r24	; 0x05
+ 6ba:	df 93       	push	r29
+ 6bc:	cf 93       	push	r28
+ 6be:	00 d0       	rcall	.+0      	; 0x6c0 <error+0x6>
+ 6c0:	00 d0       	rcall	.+0      	; 0x6c2 <error+0x8>
+ 6c2:	0f 92       	push	r0
+ 6c4:	cd b7       	in	r28, 0x3d	; 61
+ 6c6:	de b7       	in	r29, 0x3e	; 62
+ 6c8:	8d 83       	std	Y+5, r24	; 0x05
 	uint8_t frame[4];
 	frame[0]=0;
- 6be:	19 82       	std	Y+1, r1	; 0x01
+ 6ca:	19 82       	std	Y+1, r1	; 0x01
 	frame[1]=code;
- 6c0:	8d 81       	ldd	r24, Y+5	; 0x05
- 6c2:	8a 83       	std	Y+2, r24	; 0x02
+ 6cc:	8d 81       	ldd	r24, Y+5	; 0x05
+ 6ce:	8a 83       	std	Y+2, r24	; 0x02
 	frame[2]=0;
- 6c4:	1b 82       	std	Y+3, r1	; 0x03
+ 6d0:	1b 82       	std	Y+3, r1	; 0x03
 	frame[3]=code;
- 6c6:	8d 81       	ldd	r24, Y+5	; 0x05
- 6c8:	8c 83       	std	Y+4, r24	; 0x04
+ 6d2:	8d 81       	ldd	r24, Y+5	; 0x05
+ 6d4:	8c 83       	std	Y+4, r24	; 0x04
 	write_leds(frame);
- 6ca:	ce 01       	movw	r24, r28
- 6cc:	01 96       	adiw	r24, 0x01	; 1
- 6ce:	c1 dd       	rcall	.-1150   	; 0x252 <write_leds>
+ 6d6:	ce 01       	movw	r24, r28
+ 6d8:	01 96       	adiw	r24, 0x01	; 1
+ 6da:	06 de       	rcall	.-1012   	; 0x2e8 <write_leds>
 	for(;;);
- 6d0:	ff cf       	rjmp	.-2      	; 0x6d0 <error+0x22>
+ 6dc:	ff cf       	rjmp	.-2      	; 0x6dc <error+0x22>
 
-000006d2 <print>:
+000006de <print>:
 }
 
+// Turn on green LEDs
 void print(uint8_t code)
 {
- 6d2:	df 93       	push	r29
- 6d4:	cf 93       	push	r28
- 6d6:	00 d0       	rcall	.+0      	; 0x6d8 <print+0x6>
- 6d8:	00 d0       	rcall	.+0      	; 0x6da <print+0x8>
- 6da:	0f 92       	push	r0
- 6dc:	cd b7       	in	r28, 0x3d	; 61
- 6de:	de b7       	in	r29, 0x3e	; 62
- 6e0:	8d 83       	std	Y+5, r24	; 0x05
+ 6de:	df 93       	push	r29
+ 6e0:	cf 93       	push	r28
+ 6e2:	00 d0       	rcall	.+0      	; 0x6e4 <print+0x6>
+ 6e4:	00 d0       	rcall	.+0      	; 0x6e6 <print+0x8>
+ 6e6:	0f 92       	push	r0
+ 6e8:	cd b7       	in	r28, 0x3d	; 61
+ 6ea:	de b7       	in	r29, 0x3e	; 62
+ 6ec:	8d 83       	std	Y+5, r24	; 0x05
 	uint8_t frame[4];
 	frame[0]=code;
- 6e2:	8d 81       	ldd	r24, Y+5	; 0x05
- 6e4:	89 83       	std	Y+1, r24	; 0x01
+ 6ee:	8d 81       	ldd	r24, Y+5	; 0x05
+ 6f0:	89 83       	std	Y+1, r24	; 0x01
 	frame[1]=0;
- 6e6:	1a 82       	std	Y+2, r1	; 0x02
+ 6f2:	1a 82       	std	Y+2, r1	; 0x02
 	frame[2]=code;
- 6e8:	8d 81       	ldd	r24, Y+5	; 0x05
- 6ea:	8b 83       	std	Y+3, r24	; 0x03
+ 6f4:	8d 81       	ldd	r24, Y+5	; 0x05
+ 6f6:	8b 83       	std	Y+3, r24	; 0x03
 	frame[3]=0;
- 6ec:	1c 82       	std	Y+4, r1	; 0x04
+ 6f8:	1c 82       	std	Y+4, r1	; 0x04
 	write_leds(frame);
- 6ee:	ce 01       	movw	r24, r28
- 6f0:	01 96       	adiw	r24, 0x01	; 1
- 6f2:	af dd       	rcall	.-1186   	; 0x252 <write_leds>
+ 6fa:	ce 01       	movw	r24, r28
+ 6fc:	01 96       	adiw	r24, 0x01	; 1
+ 6fe:	f4 dd       	rcall	.-1048   	; 0x2e8 <write_leds>
 }
- 6f4:	0f 90       	pop	r0
- 6f6:	0f 90       	pop	r0
- 6f8:	0f 90       	pop	r0
- 6fa:	0f 90       	pop	r0
- 6fc:	0f 90       	pop	r0
- 6fe:	cf 91       	pop	r28
- 700:	df 91       	pop	r29
- 702:	08 95       	ret
+ 700:	0f 90       	pop	r0
+ 702:	0f 90       	pop	r0
+ 704:	0f 90       	pop	r0
+ 706:	0f 90       	pop	r0
+ 708:	0f 90       	pop	r0
+ 70a:	cf 91       	pop	r28
+ 70c:	df 91       	pop	r29
+ 70e:	08 95       	ret
 
-00000704 <square_root>:
-#define FP_MUL(x, y) (((long_fixed_t)(x) * (long_fixed_t)(y)) >> (FP_SHIFT))
+00000710 <power_on_periph>:
 
-// Takes 16 16x16->32 multiplies.
-// The AVR docs claim that they have a 105 cycle routine for this.
-// So, maybe about 2000 cycles per square root?
-static fixed_t square_root(fixed_t x) {
- 704:	df 93       	push	r29
- 706:	cf 93       	push	r28
- 708:	cd b7       	in	r28, 0x3d	; 61
- 70a:	de b7       	in	r29, 0x3e	; 62
- 70c:	61 97       	sbiw	r28, 0x11	; 17
- 70e:	0f b6       	in	r0, 0x3f	; 63
- 710:	f8 94       	cli
- 712:	de bf       	out	0x3e, r29	; 62
- 714:	0f be       	out	0x3f, r0	; 63
- 716:	cd bf       	out	0x3d, r28	; 61
- 718:	99 8b       	std	Y+17, r25	; 0x11
- 71a:	88 8b       	std	Y+16, r24	; 0x10
-	fixed_t mask_next = 1<<(FP_BITS-1), accum = 0;
- 71c:	80 e0       	ldi	r24, 0x00	; 0
- 71e:	90 e8       	ldi	r25, 0x80	; 128
- 720:	9a 83       	std	Y+2, r25	; 0x02
- 722:	89 83       	std	Y+1, r24	; 0x01
- 724:	1c 82       	std	Y+4, r1	; 0x04
- 726:	1b 82       	std	Y+3, r1	; 0x03
-	long_fixed_t target = ((long_fixed_t) x) << FP_SHIFT;
- 728:	88 89       	ldd	r24, Y+16	; 0x10
- 72a:	99 89       	ldd	r25, Y+17	; 0x11
- 72c:	cc 01       	movw	r24, r24
- 72e:	a0 e0       	ldi	r26, 0x00	; 0
- 730:	b0 e0       	ldi	r27, 0x00	; 0
- 732:	88 0f       	add	r24, r24
- 734:	99 1f       	adc	r25, r25
- 736:	aa 1f       	adc	r26, r26
- 738:	bb 1f       	adc	r27, r27
- 73a:	88 0f       	add	r24, r24
- 73c:	99 1f       	adc	r25, r25
- 73e:	aa 1f       	adc	r26, r26
- 740:	bb 1f       	adc	r27, r27
- 742:	88 0f       	add	r24, r24
- 744:	99 1f       	adc	r25, r25
- 746:	aa 1f       	adc	r26, r26
- 748:	bb 1f       	adc	r27, r27
- 74a:	88 0f       	add	r24, r24
- 74c:	99 1f       	adc	r25, r25
- 74e:	aa 1f       	adc	r26, r26
- 750:	bb 1f       	adc	r27, r27
- 752:	8e 83       	std	Y+6, r24	; 0x06
- 754:	9f 83       	std	Y+7, r25	; 0x07
- 756:	a8 87       	std	Y+8, r26	; 0x08
- 758:	b9 87       	std	Y+9, r27	; 0x09
-	uint8_t i;
-	for (i = 0; i < FP_BITS; i++) {
- 75a:	1d 82       	std	Y+5, r1	; 0x05
- 75c:	39 c0       	rjmp	.+114    	; 0x7d0 <square_root+0xcc>
-		fixed_t mid = accum | mask_next;
- 75e:	2b 81       	ldd	r18, Y+3	; 0x03
- 760:	3c 81       	ldd	r19, Y+4	; 0x04
- 762:	89 81       	ldd	r24, Y+1	; 0x01
- 764:	9a 81       	ldd	r25, Y+2	; 0x02
- 766:	82 2b       	or	r24, r18
- 768:	93 2b       	or	r25, r19
- 76a:	9b 87       	std	Y+11, r25	; 0x0b
- 76c:	8a 87       	std	Y+10, r24	; 0x0a
-		long_fixed_t sq = ((long_fixed_t) mid) * ((long_fixed_t) mid);
- 76e:	8a 85       	ldd	r24, Y+10	; 0x0a
- 770:	9b 85       	ldd	r25, Y+11	; 0x0b
- 772:	cc 01       	movw	r24, r24
- 774:	a0 e0       	ldi	r26, 0x00	; 0
- 776:	b0 e0       	ldi	r27, 0x00	; 0
- 778:	2a 85       	ldd	r18, Y+10	; 0x0a
- 77a:	3b 85       	ldd	r19, Y+11	; 0x0b
- 77c:	99 01       	movw	r18, r18
- 77e:	40 e0       	ldi	r20, 0x00	; 0
- 780:	50 e0       	ldi	r21, 0x00	; 0
- 782:	bc 01       	movw	r22, r24
- 784:	cd 01       	movw	r24, r26
- 786:	92 d0       	rcall	.+292    	; 0x8ac <__mulsi3>
- 788:	dc 01       	movw	r26, r24
- 78a:	cb 01       	movw	r24, r22
- 78c:	8c 87       	std	Y+12, r24	; 0x0c
- 78e:	9d 87       	std	Y+13, r25	; 0x0d
- 790:	ae 87       	std	Y+14, r26	; 0x0e
- 792:	bf 87       	std	Y+15, r27	; 0x0f
-		if (sq <= target)
- 794:	2c 85       	ldd	r18, Y+12	; 0x0c
- 796:	3d 85       	ldd	r19, Y+13	; 0x0d
- 798:	4e 85       	ldd	r20, Y+14	; 0x0e
- 79a:	5f 85       	ldd	r21, Y+15	; 0x0f
- 79c:	8e 81       	ldd	r24, Y+6	; 0x06
- 79e:	9f 81       	ldd	r25, Y+7	; 0x07
- 7a0:	a8 85       	ldd	r26, Y+8	; 0x08
- 7a2:	b9 85       	ldd	r27, Y+9	; 0x09
- 7a4:	82 17       	cp	r24, r18
- 7a6:	93 07       	cpc	r25, r19
- 7a8:	a4 07       	cpc	r26, r20
- 7aa:	b5 07       	cpc	r27, r21
- 7ac:	40 f0       	brcs	.+16     	; 0x7be <square_root+0xba>
-			accum |= mask_next;
- 7ae:	2b 81       	ldd	r18, Y+3	; 0x03
- 7b0:	3c 81       	ldd	r19, Y+4	; 0x04
- 7b2:	89 81       	ldd	r24, Y+1	; 0x01
- 7b4:	9a 81       	ldd	r25, Y+2	; 0x02
- 7b6:	82 2b       	or	r24, r18
- 7b8:	93 2b       	or	r25, r19
- 7ba:	9c 83       	std	Y+4, r25	; 0x04
- 7bc:	8b 83       	std	Y+3, r24	; 0x03
-		mask_next >>= 1;
- 7be:	89 81       	ldd	r24, Y+1	; 0x01
- 7c0:	9a 81       	ldd	r25, Y+2	; 0x02
- 7c2:	96 95       	lsr	r25
- 7c4:	87 95       	ror	r24
- 7c6:	9a 83       	std	Y+2, r25	; 0x02
- 7c8:	89 83       	std	Y+1, r24	; 0x01
-// So, maybe about 2000 cycles per square root?
-static fixed_t square_root(fixed_t x) {
-	fixed_t mask_next = 1<<(FP_BITS-1), accum = 0;
-	long_fixed_t target = ((long_fixed_t) x) << FP_SHIFT;
-	uint8_t i;
-	for (i = 0; i < FP_BITS; i++) {
- 7ca:	8d 81       	ldd	r24, Y+5	; 0x05
- 7cc:	8f 5f       	subi	r24, 0xFF	; 255
- 7ce:	8d 83       	std	Y+5, r24	; 0x05
- 7d0:	8d 81       	ldd	r24, Y+5	; 0x05
- 7d2:	80 31       	cpi	r24, 0x10	; 16
- 7d4:	20 f2       	brcs	.-120    	; 0x75e <square_root+0x5a>
-		long_fixed_t sq = ((long_fixed_t) mid) * ((long_fixed_t) mid);
-		if (sq <= target)
-			accum |= mask_next;
-		mask_next >>= 1;
-	}
-	return accum;
- 7d6:	8b 81       	ldd	r24, Y+3	; 0x03
- 7d8:	9c 81       	ldd	r25, Y+4	; 0x04
+void power_on_periph()
+{
+ 710:	df 93       	push	r29
+ 712:	cf 93       	push	r28
+ 714:	cd b7       	in	r28, 0x3d	; 61
+ 716:	de b7       	in	r29, 0x3e	; 62
+	PORTB &= ~(1<<PB2); // Turn power on to everything
+ 718:	85 e2       	ldi	r24, 0x25	; 37
+ 71a:	90 e0       	ldi	r25, 0x00	; 0
+ 71c:	25 e2       	ldi	r18, 0x25	; 37
+ 71e:	30 e0       	ldi	r19, 0x00	; 0
+ 720:	f9 01       	movw	r30, r18
+ 722:	20 81       	ld	r18, Z
+ 724:	2b 7f       	andi	r18, 0xFB	; 251
+ 726:	fc 01       	movw	r30, r24
+ 728:	20 83       	st	Z, r18
 }
- 7da:	61 96       	adiw	r28, 0x11	; 17
- 7dc:	0f b6       	in	r0, 0x3f	; 63
- 7de:	f8 94       	cli
- 7e0:	de bf       	out	0x3e, r29	; 62
- 7e2:	0f be       	out	0x3f, r0	; 63
- 7e4:	cd bf       	out	0x3d, r28	; 61
- 7e6:	cf 91       	pop	r28
- 7e8:	df 91       	pop	r29
- 7ea:	08 95       	ret
+ 72a:	cf 91       	pop	r28
+ 72c:	df 91       	pop	r29
+ 72e:	08 95       	ret
 
-000007ec <main>:
-#include "fixed_point.h"
-#include "accel.h"
-#include <avr/io.h>
+00000730 <power_off_periph>:
+
+void power_off_periph()
+{
+ 730:	df 93       	push	r29
+ 732:	cf 93       	push	r28
+ 734:	cd b7       	in	r28, 0x3d	; 61
+ 736:	de b7       	in	r29, 0x3e	; 62
+	PORTB |= (1<<PB2); // Turn power off to everything
+ 738:	85 e2       	ldi	r24, 0x25	; 37
+ 73a:	90 e0       	ldi	r25, 0x00	; 0
+ 73c:	25 e2       	ldi	r18, 0x25	; 37
+ 73e:	30 e0       	ldi	r19, 0x00	; 0
+ 740:	f9 01       	movw	r30, r18
+ 742:	20 81       	ld	r18, Z
+ 744:	24 60       	ori	r18, 0x04	; 4
+ 746:	fc 01       	movw	r30, r24
+ 748:	20 83       	st	Z, r18
+}
+ 74a:	cf 91       	pop	r28
+ 74c:	df 91       	pop	r29
+ 74e:	08 95       	ret
+
+00000750 <uc_sleep>:
+
+void uc_sleep()
+{
+ 750:	df 93       	push	r29
+ 752:	cf 93       	push	r28
+ 754:	cd b7       	in	r28, 0x3d	; 61
+ 756:	de b7       	in	r29, 0x3e	; 62
+	SMCR |= (1<<SM1) | (1<<SE); // Sleep mode is power-down, sleep enable
+ 758:	83 e5       	ldi	r24, 0x53	; 83
+ 75a:	90 e0       	ldi	r25, 0x00	; 0
+ 75c:	23 e5       	ldi	r18, 0x53	; 83
+ 75e:	30 e0       	ldi	r19, 0x00	; 0
+ 760:	f9 01       	movw	r30, r18
+ 762:	20 81       	ld	r18, Z
+ 764:	25 60       	ori	r18, 0x05	; 5
+ 766:	fc 01       	movw	r30, r24
+ 768:	20 83       	st	Z, r18
+	sleep_cpu();
+ 76a:	88 95       	sleep
+	while(PIND & (1<<PIND2)); // TODO: replace busy-wait with interrupt enable + WFI sleep
+ 76c:	00 00       	nop
+ 76e:	89 e2       	ldi	r24, 0x29	; 41
+ 770:	90 e0       	ldi	r25, 0x00	; 0
+ 772:	fc 01       	movw	r30, r24
+ 774:	80 81       	ld	r24, Z
+ 776:	88 2f       	mov	r24, r24
+ 778:	90 e0       	ldi	r25, 0x00	; 0
+ 77a:	84 70       	andi	r24, 0x04	; 4
+ 77c:	90 70       	andi	r25, 0x00	; 0
+ 77e:	00 97       	sbiw	r24, 0x00	; 0
+ 780:	b1 f7       	brne	.-20     	; 0x76e <uc_sleep+0x1e>
+	sei();
+	sleep_cpu();
+	cli();
+	SMCR &= ~(1<<SE);
+	*/
+}
+ 782:	cf 91       	pop	r28
+ 784:	df 91       	pop	r29
+ 786:	08 95       	ret
+
+00000788 <main>:
+#include "power.h"
+
+void pause();
 
 int main()
 {
- 7ec:	df 93       	push	r29
- 7ee:	cf 93       	push	r28
- 7f0:	cd b7       	in	r28, 0x3d	; 61
- 7f2:	de b7       	in	r29, 0x3e	; 62
- 7f4:	2a 97       	sbiw	r28, 0x0a	; 10
- 7f6:	0f b6       	in	r0, 0x3f	; 63
- 7f8:	f8 94       	cli
- 7fa:	de bf       	out	0x3e, r29	; 62
- 7fc:	0f be       	out	0x3f, r0	; 63
- 7fe:	cd bf       	out	0x3d, r28	; 61
+ 788:	df 93       	push	r29
+ 78a:	cf 93       	push	r28
+ 78c:	cd b7       	in	r28, 0x3d	; 61
+ 78e:	de b7       	in	r29, 0x3e	; 62
+ 790:	66 97       	sbiw	r28, 0x16	; 22
+ 792:	0f b6       	in	r0, 0x3f	; 63
+ 794:	f8 94       	cli
+ 796:	de bf       	out	0x3e, r29	; 62
+ 798:	0f be       	out	0x3f, r0	; 63
+ 79a:	cd bf       	out	0x3d, r28	; 61
 	int16_t result;
 	uint8_t display;
+
+	uint8_t pattern[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x40,0x20,0x10,0x08,0x04,0x02};
+ 79c:	ce 01       	movw	r24, r28
+ 79e:	05 96       	adiw	r24, 0x05	; 5
+ 7a0:	20 e0       	ldi	r18, 0x00	; 0
+ 7a2:	31 e0       	ldi	r19, 0x01	; 1
+ 7a4:	4e e0       	ldi	r20, 0x0E	; 14
+ 7a6:	f9 01       	movw	r30, r18
+ 7a8:	00 80       	ld	r0, Z
+ 7aa:	2f 5f       	subi	r18, 0xFF	; 255
+ 7ac:	3f 4f       	sbci	r19, 0xFF	; 255
+ 7ae:	fc 01       	movw	r30, r24
+ 7b0:	00 82       	st	Z, r0
+ 7b2:	01 96       	adiw	r24, 0x01	; 1
+ 7b4:	41 50       	subi	r20, 0x01	; 1
+ 7b6:	44 23       	and	r20, r20
+ 7b8:	b1 f7       	brne	.-20     	; 0x7a6 <main+0x1e>
+	//uint8_t pattern[] = {0x42,0x86,0x8a,0x92,0x62,0x00,0x02,0x00,0x7c,0x82,0x82,0x82,0x7c,0x00,0x7c,0x82,0x82,0x82,0x7c,0x00,0x6c,0x92,0x92,0x92,0x6c,0x00,0x00,0x00,0x00};
+	uint8_t pat_len = 14;
+ 7ba:	8e e0       	ldi	r24, 0x0E	; 14
+ 7bc:	8a 83       	std	Y+2, r24	; 0x02
+	//uint8_t pat_len = 30;
+	uint8_t i=pat_len;
+ 7be:	8a 81       	ldd	r24, Y+2	; 0x02
+ 7c0:	89 83       	std	Y+1, r24	; 0x01
 	uint8_t frame[4];
-	uint8_t x = 1;
- 800:	81 e0       	ldi	r24, 0x01	; 1
- 802:	89 83       	std	Y+1, r24	; 0x01
-	uint16_t pause;
-	uint8_t dir = 1;
- 804:	81 e0       	ldi	r24, 0x01	; 1
- 806:	8c 83       	std	Y+4, r24	; 0x04
-	int16_t val;
+
+	uint16_t j;
+	int16_t ca;
+
 	init();
- 808:	d6 dc       	rcall	.-1620   	; 0x1b6 <init>
+ 7c2:	40 dd       	rcall	.-1408   	; 0x244 <init>
 	accel_init();
- 80a:	1f dc       	rcall	.-1986   	; 0x4a <accel_init>
-	start_sampling();
- 80c:	3d dc       	rcall	.-1926   	; 0x88 <start_sampling>
-	sleep();
- 80e:	01 dd       	rcall	.-1534   	; 0x212 <sleep>
-//		{
-//			display=7;
-//		}
-//		display = 1 << display;
-//		print((uint8_t)display);
-		frame[0] = 1 << val;
- 810:	81 e0       	ldi	r24, 0x01	; 1
- 812:	90 e0       	ldi	r25, 0x00	; 0
- 814:	0d 80       	ldd	r0, Y+5	; 0x05
- 816:	02 c0       	rjmp	.+4      	; 0x81c <main+0x30>
- 818:	88 0f       	add	r24, r24
- 81a:	99 1f       	adc	r25, r25
- 81c:	0a 94       	dec	r0
- 81e:	e2 f7       	brpl	.-8      	; 0x818 <main+0x2c>
- 820:	8f 83       	std	Y+7, r24	; 0x07
-		frame[2] = 1 << (val >>8);
- 822:	8d 81       	ldd	r24, Y+5	; 0x05
- 824:	9e 81       	ldd	r25, Y+6	; 0x06
- 826:	29 2f       	mov	r18, r25
- 828:	33 27       	eor	r19, r19
- 82a:	27 fd       	sbrc	r18, 7
- 82c:	3a 95       	dec	r19
- 82e:	81 e0       	ldi	r24, 0x01	; 1
- 830:	90 e0       	ldi	r25, 0x00	; 0
- 832:	02 c0       	rjmp	.+4      	; 0x838 <main+0x4c>
- 834:	88 0f       	add	r24, r24
- 836:	99 1f       	adc	r25, r25
- 838:	2a 95       	dec	r18
- 83a:	e2 f7       	brpl	.-8      	; 0x834 <main+0x48>
- 83c:	89 87       	std	Y+9, r24	; 0x09
-		frame[1] = 0;
- 83e:	18 86       	std	Y+8, r1	; 0x08
-//		frame[3] = x;
-//		if (!(PIND & (1<<PIND2))){wake();}
-		
-		val = read_accel_1();
- 840:	8e dc       	rcall	.-1764   	; 0x15e <read_accel_1>
- 842:	9e 83       	std	Y+6, r25	; 0x06
- 844:	8d 83       	std	Y+5, r24	; 0x05
-		if ((val>>8) > 4) {wake();
- 846:	8d 81       	ldd	r24, Y+5	; 0x05
- 848:	9e 81       	ldd	r25, Y+6	; 0x06
- 84a:	89 2f       	mov	r24, r25
- 84c:	99 0f       	add	r25, r25
- 84e:	99 0b       	sbc	r25, r25
- 850:	85 30       	cpi	r24, 0x05	; 5
- 852:	91 05       	cpc	r25, r1
- 854:	24 f0       	brlt	.+8      	; 0x85e <main+0x72>
- 856:	ed dc       	rcall	.-1574   	; 0x232 <wake>
-			frame[3] = 0xFF;
- 858:	8f ef       	ldi	r24, 0xFF	; 255
- 85a:	8a 87       	std	Y+10, r24	; 0x0a
- 85c:	01 c0       	rjmp	.+2      	; 0x860 <main+0x74>
+ 7c4:	4d dc       	rcall	.-1894   	; 0x60 <accel_init>
+ 7c6:	01 c0       	rjmp	.+2      	; 0x7ca <main+0x42>
+				i=pat_len;
+			}
+			write_leds(frame);
+			i--;
 		}
-		else {frame[3] = 0;}
- 85e:	1a 86       	std	Y+10, r1	; 0x0a
-		write_leds(frame);
- 860:	ce 01       	movw	r24, r28
- 862:	07 96       	adiw	r24, 0x07	; 7
- 864:	f6 dc       	rcall	.-1556   	; 0x252 <write_leds>
-		wake();		
- 866:	e5 dc       	rcall	.-1590   	; 0x232 <wake>
-		if (x >> 7) {dir = 0;}
- 868:	89 81       	ldd	r24, Y+1	; 0x01
- 86a:	88 23       	and	r24, r24
- 86c:	0c f4       	brge	.+2      	; 0x870 <main+0x84>
- 86e:	1c 82       	std	Y+4, r1	; 0x04
-		if (x == 1) {dir = 1;}
- 870:	89 81       	ldd	r24, Y+1	; 0x01
- 872:	81 30       	cpi	r24, 0x01	; 1
- 874:	11 f4       	brne	.+4      	; 0x87a <main+0x8e>
- 876:	81 e0       	ldi	r24, 0x01	; 1
- 878:	8c 83       	std	Y+4, r24	; 0x04
-		if (dir){x <<= 1;}
- 87a:	8c 81       	ldd	r24, Y+4	; 0x04
- 87c:	88 23       	and	r24, r24
- 87e:	21 f0       	breq	.+8      	; 0x888 <main+0x9c>
- 880:	89 81       	ldd	r24, Y+1	; 0x01
- 882:	88 0f       	add	r24, r24
- 884:	89 83       	std	Y+1, r24	; 0x01
- 886:	03 c0       	rjmp	.+6      	; 0x88e <main+0xa2>
-		else {x >>= 1;}
- 888:	89 81       	ldd	r24, Y+1	; 0x01
- 88a:	86 95       	lsr	r24
- 88c:	89 83       	std	Y+1, r24	; 0x01
-		for(pause = 0; pause < 1000; pause++);	
- 88e:	1b 82       	std	Y+3, r1	; 0x03
- 890:	1a 82       	std	Y+2, r1	; 0x02
- 892:	05 c0       	rjmp	.+10     	; 0x89e <main+0xb2>
- 894:	8a 81       	ldd	r24, Y+2	; 0x02
- 896:	9b 81       	ldd	r25, Y+3	; 0x03
- 898:	01 96       	adiw	r24, 0x01	; 1
- 89a:	9b 83       	std	Y+3, r25	; 0x03
- 89c:	8a 83       	std	Y+2, r24	; 0x02
- 89e:	8a 81       	ldd	r24, Y+2	; 0x02
- 8a0:	9b 81       	ldd	r25, Y+3	; 0x03
- 8a2:	23 e0       	ldi	r18, 0x03	; 3
- 8a4:	88 3e       	cpi	r24, 0xE8	; 232
- 8a6:	92 07       	cpc	r25, r18
- 8a8:	a8 f3       	brcs	.-22     	; 0x894 <main+0xa8>
 	}
- 8aa:	b2 cf       	rjmp	.-156    	; 0x810 <main+0x24>
+ 7c8:	00 00       	nop
+	init();
+	accel_init();
 
-000008ac <__mulsi3>:
- 8ac:	ff 27       	eor	r31, r31
- 8ae:	ee 27       	eor	r30, r30
- 8b0:	bb 27       	eor	r27, r27
- 8b2:	aa 27       	eor	r26, r26
+	for(;;)
+	{
+		sleep();
+ 7ca:	58 d0       	rcall	.+176    	; 0x87c <sleep>
+		for(;;)
+		{
+			frame[0]=pattern[i];
+ 7cc:	89 81       	ldd	r24, Y+1	; 0x01
+ 7ce:	88 2f       	mov	r24, r24
+ 7d0:	90 e0       	ldi	r25, 0x00	; 0
+ 7d2:	9e 01       	movw	r18, r28
+ 7d4:	2b 5f       	subi	r18, 0xFB	; 251
+ 7d6:	3f 4f       	sbci	r19, 0xFF	; 255
+ 7d8:	82 0f       	add	r24, r18
+ 7da:	93 1f       	adc	r25, r19
+ 7dc:	fc 01       	movw	r30, r24
+ 7de:	80 81       	ld	r24, Z
+ 7e0:	8b 8b       	std	Y+19, r24	; 0x13
+			frame[2]=pattern[i];
+ 7e2:	89 81       	ldd	r24, Y+1	; 0x01
+ 7e4:	88 2f       	mov	r24, r24
+ 7e6:	90 e0       	ldi	r25, 0x00	; 0
+ 7e8:	9e 01       	movw	r18, r28
+ 7ea:	2b 5f       	subi	r18, 0xFB	; 251
+ 7ec:	3f 4f       	sbci	r19, 0xFF	; 255
+ 7ee:	82 0f       	add	r24, r18
+ 7f0:	93 1f       	adc	r25, r19
+ 7f2:	fc 01       	movw	r30, r24
+ 7f4:	80 81       	ld	r24, Z
+ 7f6:	8d 8b       	std	Y+21, r24	; 0x15
+			frame[1]=pattern[i];
+ 7f8:	89 81       	ldd	r24, Y+1	; 0x01
+ 7fa:	88 2f       	mov	r24, r24
+ 7fc:	90 e0       	ldi	r25, 0x00	; 0
+ 7fe:	9e 01       	movw	r18, r28
+ 800:	2b 5f       	subi	r18, 0xFB	; 251
+ 802:	3f 4f       	sbci	r19, 0xFF	; 255
+ 804:	82 0f       	add	r24, r18
+ 806:	93 1f       	adc	r25, r19
+ 808:	fc 01       	movw	r30, r24
+ 80a:	80 81       	ld	r24, Z
+ 80c:	8c 8b       	std	Y+20, r24	; 0x14
+			frame[3]=pattern[i];
+ 80e:	89 81       	ldd	r24, Y+1	; 0x01
+ 810:	88 2f       	mov	r24, r24
+ 812:	90 e0       	ldi	r25, 0x00	; 0
+ 814:	9e 01       	movw	r18, r28
+ 816:	2b 5f       	subi	r18, 0xFB	; 251
+ 818:	3f 4f       	sbci	r19, 0xFF	; 255
+ 81a:	82 0f       	add	r24, r18
+ 81c:	93 1f       	adc	r25, r19
+ 81e:	fc 01       	movw	r30, r24
+ 820:	80 81       	ld	r24, Z
+ 822:	8e 8b       	std	Y+22, r24	; 0x16
 
-000008b4 <__mulsi3_loop>:
- 8b4:	60 ff       	sbrs	r22, 0
- 8b6:	04 c0       	rjmp	.+8      	; 0x8c0 <__mulsi3_skip1>
- 8b8:	a2 0f       	add	r26, r18
- 8ba:	b3 1f       	adc	r27, r19
- 8bc:	e4 1f       	adc	r30, r20
- 8be:	f5 1f       	adc	r31, r21
+			if(i==0)
+ 824:	89 81       	ldd	r24, Y+1	; 0x01
+ 826:	88 23       	and	r24, r24
+ 828:	51 f4       	brne	.+20     	; 0x83e <main+0xb6>
+			{
+				ca=get_centrifugal_acceleration();
+ 82a:	d2 dc       	rcall	.-1628   	; 0x1d0 <get_centrifugal_acceleration>
+ 82c:	9c 83       	std	Y+4, r25	; 0x04
+ 82e:	8b 83       	std	Y+3, r24	; 0x03
+				if(ca<50)
+ 830:	8b 81       	ldd	r24, Y+3	; 0x03
+ 832:	9c 81       	ldd	r25, Y+4	; 0x04
+ 834:	82 33       	cpi	r24, 0x32	; 50
+ 836:	91 05       	cpc	r25, r1
+ 838:	3c f2       	brlt	.-114    	; 0x7c8 <main+0x40>
+				{
+					break;
+				}
+				i=pat_len;
+ 83a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 83c:	89 83       	std	Y+1, r24	; 0x01
+			}
+			write_leds(frame);
+ 83e:	ce 01       	movw	r24, r28
+ 840:	43 96       	adiw	r24, 0x13	; 19
+ 842:	52 dd       	rcall	.-1372   	; 0x2e8 <write_leds>
+			i--;
+ 844:	89 81       	ldd	r24, Y+1	; 0x01
+ 846:	81 50       	subi	r24, 0x01	; 1
+ 848:	89 83       	std	Y+1, r24	; 0x01
+		}
+ 84a:	c0 cf       	rjmp	.-128    	; 0x7cc <main+0x44>
 
-000008c0 <__mulsi3_skip1>:
- 8c0:	22 0f       	add	r18, r18
- 8c2:	33 1f       	adc	r19, r19
- 8c4:	44 1f       	adc	r20, r20
- 8c6:	55 1f       	adc	r21, r21
- 8c8:	96 95       	lsr	r25
- 8ca:	87 95       	ror	r24
- 8cc:	77 95       	ror	r23
- 8ce:	67 95       	ror	r22
- 8d0:	89 f7       	brne	.-30     	; 0x8b4 <__mulsi3_loop>
- 8d2:	00 97       	sbiw	r24, 0x00	; 0
- 8d4:	76 07       	cpc	r23, r22
- 8d6:	71 f7       	brne	.-36     	; 0x8b4 <__mulsi3_loop>
+0000084c <pause>:
 
-000008d8 <__mulsi3_exit>:
- 8d8:	cf 01       	movw	r24, r30
- 8da:	bd 01       	movw	r22, r26
- 8dc:	08 95       	ret
+	return 0;
+}
 
-000008de <_exit>:
- 8de:	f8 94       	cli
+void pause()
+{
+ 84c:	df 93       	push	r29
+ 84e:	cf 93       	push	r28
+ 850:	00 d0       	rcall	.+0      	; 0x852 <pause+0x6>
+ 852:	cd b7       	in	r28, 0x3d	; 61
+ 854:	de b7       	in	r29, 0x3e	; 62
+	uint16_t i;
+	for(i=0;i<1000;i++)
+ 856:	1a 82       	std	Y+2, r1	; 0x02
+ 858:	19 82       	std	Y+1, r1	; 0x01
+ 85a:	05 c0       	rjmp	.+10     	; 0x866 <pause+0x1a>
+ 85c:	89 81       	ldd	r24, Y+1	; 0x01
+ 85e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 860:	01 96       	adiw	r24, 0x01	; 1
+ 862:	9a 83       	std	Y+2, r25	; 0x02
+ 864:	89 83       	std	Y+1, r24	; 0x01
+ 866:	89 81       	ldd	r24, Y+1	; 0x01
+ 868:	9a 81       	ldd	r25, Y+2	; 0x02
+ 86a:	23 e0       	ldi	r18, 0x03	; 3
+ 86c:	88 3e       	cpi	r24, 0xE8	; 232
+ 86e:	92 07       	cpc	r25, r18
+ 870:	a8 f3       	brcs	.-22     	; 0x85c <pause+0x10>
+	{
+	}
+}
+ 872:	0f 90       	pop	r0
+ 874:	0f 90       	pop	r0
+ 876:	cf 91       	pop	r28
+ 878:	df 91       	pop	r29
+ 87a:	08 95       	ret
 
-000008e0 <__stop_program>:
- 8e0:	ff cf       	rjmp	.-2      	; 0x8e0 <__stop_program>
+0000087c <sleep>:
+#include "accel.h"
+#include "hal.h"
+
+
+void sleep()
+{
+ 87c:	df 93       	push	r29
+ 87e:	cf 93       	push	r28
+ 880:	cd b7       	in	r28, 0x3d	; 61
+ 882:	de b7       	in	r29, 0x3e	; 62
+	accel_sleep(); // Doing this before power_off is oddly important
+ 884:	87 dc       	rcall	.-1778   	; 0x194 <accel_sleep>
+	power_off_periph();
+ 886:	54 df       	rcall	.-344    	; 0x730 <power_off_periph>
+	uc_sleep();
+ 888:	63 df       	rcall	.-314    	; 0x750 <uc_sleep>
+	power_on_periph();
+ 88a:	42 df       	rcall	.-380    	; 0x710 <power_on_periph>
+	accel_run();
+ 88c:	59 dc       	rcall	.-1870   	; 0x140 <accel_run>
+}
+ 88e:	cf 91       	pop	r28
+ 890:	df 91       	pop	r29
+ 892:	08 95       	ret
+
+00000894 <_exit>:
+ 894:	f8 94       	cli
+
+00000896 <__stop_program>:
+ 896:	ff cf       	rjmp	.-2      	; 0x896 <__stop_program>

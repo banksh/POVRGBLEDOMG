@@ -15,28 +15,35 @@ int main()
 	//uint8_t pat_len = 30;
 	uint8_t i=pat_len;
 	uint8_t frame[4];
-	uint8_t c;
 
+	uint16_t j;
+	int16_t ca;
 
 	init();
 	accel_init();
 
-	sleep();
-
 	for(;;)
 	{
-		pause();
-		frame[0]=pattern[i];
-		frame[2]=pattern[i];
-		frame[1]=pattern[i];
-		frame[3]=pattern[i];
-
-		write_leds(frame);
-		if(i==0)
+		sleep();
+		for(;;)
 		{
-			i=pat_len;
+			frame[0]=pattern[i];
+			frame[2]=pattern[i];
+			frame[1]=pattern[i];
+			frame[3]=pattern[i];
+
+			if(i==0)
+			{
+				ca=get_centrifugal_acceleration();
+				if(ca<50)
+				{
+					break;
+				}
+				i=pat_len;
+			}
+			write_leds(frame);
+			i--;
 		}
-		i--;
 	}
 
 	return 0;
@@ -49,3 +56,4 @@ void pause()
 	{
 	}
 }
+
