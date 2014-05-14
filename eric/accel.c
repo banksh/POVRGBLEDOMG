@@ -48,22 +48,26 @@ void accel_init()
 	accel_write_single(ACCEL_1,CTRL_REG5,0x04); // Motion interrupt to INT1	
 
 	accel_write_single(ACCEL_1,XYZ_DATA_CFG,0x02); // 8g
-	accel_write_single(ACCEL_2,XYZ_DATA_CFG,0x02);
 }
 
 // Turns on accelerometers
 void accel_run()
 {
-	accel_write_single(ACCEL_1,CTRL_REG1,0x01);
+	accel_write_single(ACCEL_1,CTRL_REG1,0x00); // Enter standby
+	accel_write_single(ACCEL_2,CTRL_REG1,0x00);
+
+	accel_write_single(ACCEL_2,XYZ_DATA_CFG,0x02); // 8g
+
+	accel_write_single(ACCEL_1,CTRL_REG1,0x01); // Enter active, data rate = 800 Hz
 	accel_write_single(ACCEL_2,CTRL_REG1,0x01);
 }
 
-void accel_standby()
+void accel_sleep()
 {
 	uint8_t result;
-	accel_read_single(ACCEL_1,FF_MT_SRC,&result); // Clear any pending interrupts
-	accel_write_single(ACCEL_1,CTRL_REG1,0x40); // Clears ACTIVE bit, sets sample rate at 12.5 Hz
-	accel_write_single(ACCEL_2,CTRL_REG1,0x40);
+	accel_write_single(ACCEL_1,CTRL_REG1,0x00); // Enter standby
+	accel_read_single(ACCEL_1,FF_MT_SRC,&result); // Clear pending interrupt
+	accel_write_single(ACCEL_1,CTRL_REG1,0x29); // Enter active, data rate = 12.5 Hz
 }
 
 // Returns a 13-bit signed integer representing the centrifugal acceleration

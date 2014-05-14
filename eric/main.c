@@ -20,9 +20,8 @@ int main()
 
 	init();
 	accel_init();
-	accel_run();
 
-	uc_sleep();
+	sleep();
 
 	for(;;)
 	{
