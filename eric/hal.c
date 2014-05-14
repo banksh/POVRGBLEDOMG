@@ -183,5 +183,11 @@ void power_off_periph()
 
 void uc_sleep()
 {
-	while(PIND & (1<<PIND2)); // TODO: replace busy-wait with interrupt enable + WFI sleep
+//	while(PIND & (1<<PIND2)); // TODO: replace busy-wait with interrupt enable + WFI sleep
+
+	EIMSK |= (1<<INT0); // Set INT0 external interrupt enable
+	SMCR &= (1<<SM1) | (1<<SE); // Sleep mode is power-down, sleep enable
+	sei(); // global interrupt enable
+	sleep(); 
+	cli(); // global interrupt disable
 }
