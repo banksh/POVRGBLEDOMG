@@ -80,3 +80,31 @@ int16_t get_centrifugal_acceleration()
 	return (a>>5)+(b>>5);
 }
 
+
+int16_t get_accel_1_x()
+{
+	int16_t a;
+	accel_read_double(ACCEL_1,0x03,(uint8_t*)(&a));
+	return a;
+}
+
+int16_t get_accel_2_x()
+{
+	int16_t a;
+	accel_read_double(ACCEL_2,0x03,(uint8_t*)(&a));
+	return a;
+}
+
+int16_t get_accel_1_y()
+{
+	int16_t a;
+	accel_read_double(ACCEL_1,0x01,(uint8_t*)(&a));
+	return a;
+}
+
+int16_t get_accel_2_y()
+{
+	int16_t a;
+	accel_read_double(ACCEL_2,0x01,(uint8_t*)(&a));
+	return a;
+}
