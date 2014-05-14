@@ -8,13 +8,18 @@ uint8_t black[4]={0,0,0,0};
 // Configure chip
 void init()
 {
-	DDRB |= (1<<DDB3) | (1<<DDB5) | (1<<DDB2); // MOSI, SCK, and SS
+	DDRB |= (1<<DDB3) | (1<<DDB5) | (1<<DDB2); // MOSI, SCK, and 3V_EN
 	DDRD |= (1<<DDD6) | (1<<DDD7); // LED Enable and Latch
+	DDRC |= (1<<DDC0); // Flash CS
+
+	PORTC |= (1<<PC0); // Deselect flash
 
 	SPCR |= (1<<SPE) | (1<<MSTR); // SPI Configuration
 	SPSR |= (1<<SPI2X);
 
 	PORTD |= (1<<PORTD7); // Latch
+
+	PORTB &= ~(1<<PB2); // Turn power on to everything
 
 	write_leds(black);
 }
@@ -166,3 +171,17 @@ void print(uint8_t code)
 	write_leds(frame);
 }
 
+void power_on_periph()
+{
+	PORTB &= ~(1<<PB2); // Turn power on to everything
+}
+
+void power_off_periph()
+{
+	PORTB |= (1<<PB2); // Turn power off to everything
+}
+
+void uc_sleep()
+{
+	while(PIND & (1<<PIND2)); // TODO: replace busy-wait with interrupt enable + WFI sleep
+}

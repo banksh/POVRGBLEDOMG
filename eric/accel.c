@@ -1,19 +1,69 @@
 #include "accel.h"
 #include "hal.h"
 
-#define ACCEL_1		0x38
-#define ACCEL_2		0x3A
-#define CTRL_REG1	0x2A
+#define ACCEL_1		0x3A
+#define ACCEL_2		0x38
 #define OUT_Y		0x03
 #define XYZ_DATA_CFG	0x0E
 
+#define CTRL_REG1	0x2A
+#define CTRL_REG2	0x2B
+#define CTRL_REG3	0x2C
+#define CTRL_REG4	0x2D
+#define CTRL_REG5	0x2E
+#define FF_MT_CFG	0x15
+#define FF_MT_SRC	0x16
+#define FF_MT_THS	0x17
+#define FF_MT_COUNT	0x18
+
+void accel_init()
+{
+	uint8_t result;
+	accel_write_single(ACCEL_1,CTRL_REG2,0x40); // RESET
+	accel_write_single(ACCEL_2,CTRL_REG2,0x40); // RESET
+	for(;;)
+	{
+		accel_read_single(ACCEL_1,CTRL_REG2,&result);
+		if(!(result & 0x40))
+		{
+			break;
+		}
+	}
+	for(;;)
+	{
+		accel_read_single(ACCEL_2,CTRL_REG2,&result);
+		if(!(result & 0x40))
+		{
+			break;
+		}
+	}
+
+	accel_write_single(ACCEL_1,FF_MT_CFG,0xF8); // Motion detect
+	accel_write_single(ACCEL_1,FF_MT_THS,0xC0); // Motion threshold at 2g
+	accel_write_single(ACCEL_1,FF_MT_COUNT,0x01); // Debounce time at 80ms
+
+	accel_write_single(ACCEL_1,CTRL_REG2,0x18); // Low power sleep mode
+	accel_write_single(ACCEL_1,CTRL_REG3,0x08); // Wake up interrupt on motion
+	accel_write_single(ACCEL_1,CTRL_REG4,0x04); // Motion interrupt enable
+	accel_write_single(ACCEL_1,CTRL_REG5,0x04); // Motion interrupt to INT1	
+
+	accel_write_single(ACCEL_1,XYZ_DATA_CFG,0x02); // 8g
+	accel_write_single(ACCEL_2,XYZ_DATA_CFG,0x02);
+}
+
 // Turns on accelerometers
-void start_sampling()
+void accel_run()
 {
 	accel_write_single(ACCEL_1,CTRL_REG1,0x01);
 	accel_write_single(ACCEL_2,CTRL_REG1,0x01);
-	accel_write_single(ACCEL_1,XYZ_DATA_CFG,0x02);
-	accel_write_single(ACCEL_2,XYZ_DATA_CFG,0x02);
+}
+
+void accel_standby()
+{
+	uint8_t result;
+	accel_read_single(ACCEL_1,FF_MT_SRC,&result); // Clear any pending interrupts
+	accel_write_single(ACCEL_1,CTRL_REG1,0x40); // Clears ACTIVE bit, sets sample rate at 12.5 Hz
+	accel_write_single(ACCEL_2,CTRL_REG1,0x40);
 }
 
 // Returns a 13-bit signed integer representing the centrifugal acceleration

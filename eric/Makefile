@@ -1,5 +1,5 @@
 PRG            = yoyo
-OBJ            = accel.o hal.o main.o
+OBJ            = accel.o hal.o main.o power.o
 PROGRAMMER     = usbtiny
 PORT           = usb
 MCU_TARGET     = attiny48
